@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/App.css';
 import searchImg from '../assets/archive-search-outline.svg';
 import loadingImg from '../assets/loading.svg';
-import { getLucky } from '../config';
+import { getLucky } from '../lucky';
 
 function App() {
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ function App() {
 
 export default App;
 
+// show the loading animation to the user, lock submit buttons
 let showLoading = function(){
   //disable buttons
   document.querySelector('#package-search').disabled = true;
@@ -36,6 +37,8 @@ let showLoading = function(){
   loading.classList.remove('hidden');
   loading.classList.add('loading');
 };
+
+// hide the loading animation from the user, unlock submit buttons
 let hideLoading = function(){
   //enable buttons
   document.querySelector('#package-search').disabled = false;
@@ -45,10 +48,14 @@ let hideLoading = function(){
   loading.classList.remove('loading');
   loading.classList.add('hidden')
 };
+
+// gets a random package from the lucky array and show results for it
 let handleLucky = function(navigate,setMessage){
   const pkgName = getLucky();
   handleSearch(pkgName,navigate,setMessage);
 }
+
+//handles search when the user presses the search button. This also used for lucky search after a pkgName is generated.
 let handleSearch = function(pkgName,navigate,setMessage){
   //clear message
   setMessage('');
@@ -56,24 +63,25 @@ let handleSearch = function(pkgName,navigate,setMessage){
   getPkgData(pkgName,navigate,setMessage);
 };
 
+//gets the package data from the server at localhost:5000
 let getPkgData = async function(pkgName,navigate,setMessage){
-  let pkgData = [];
+  let searchResults = [];
   try{
     //form validation
-    if (!pkgName) throw new Error('A package name must be entered.');
-    if (pkgName==='') throw new Error('The package input canno tbe left blank.');
+    if (!pkgName || pkgName==='') throw new Error('The package search input cannot be left blank.');
     //get data from sever
     let response = await fetch(`http://localhost:5000/api/search/${pkgName}`,{
       method : 'GET',
     });
-    pkgData = await response.json();
-    if (pkgData.results.length===0){
+    searchResults = (await response.json());
+    if (searchResults.length===0){
       setMessage('No results found.');
       throw new Error('No results found.');
     }
-    navigate(`/package/${pkgName}`,{state: {pkgData,pkgName}});
+    navigate(`/results/${pkgName}`,{state: {searchResults,pkgName}});
   }catch(e){
     console.log(`${e} when getting package data`);
+    setMessage(`${e}`);
     hideLoading();
   }
 };

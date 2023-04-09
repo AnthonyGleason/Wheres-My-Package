@@ -24,4 +24,7 @@ let getArchResults = async function(packageName,res){
   return archResults;
 };
 
+let getAurResults = async function(packageName,res){
+  // `https://aur.archlinux.org/rpc?v=5&type=search&arg=${packageName}`
+}
 module.exports = {findExactMatch,getArchResults};

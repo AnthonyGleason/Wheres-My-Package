@@ -5,20 +5,22 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Package from './components/Package';
+import Results from './components/Results';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
+        {/* '/' route is the homepage which allows the user to search for packages */}
         <Route path='/' element={<App />} />
-        <Route path='/package/:pkgname' element={<Package />} />
+        {/* '/results/:pkgName' shows all results of the package search to the user */}
+        <Route path='/results/:pkgName' element={<Results />} />
+        {/* '/package/:pkgName' shows the selected package (obtained from the route params) to the user */}
+        <Route path='/package/:pkgName' element={<Package />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

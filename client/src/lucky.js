@@ -11,5 +11,5 @@ const lucky = [
 ];
 let getLucky = function(){
   return lucky[(Math.floor(Math.random()*50))];
-}
+};
 module.exports = {getLucky}

@@ -18,7 +18,7 @@ router.get('/search/:packageName', async(req,res,next)=>{
   exactMatch = findExactMatch(archResults,packageName);
   //return package results
   res.status(200).json({
-    results: archResults,
+    allResults: archResults,
     exactMatch: exactMatch,
   });
 })

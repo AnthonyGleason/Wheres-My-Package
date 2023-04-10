@@ -6,10 +6,9 @@ export default function Results(){
   const state = location.state;
   //destructure state, pkgResults has both an exactMatch and results property
   const {pkgName,searchResults} = state;
-  console.log(searchResults);
   return(
     <div className='results'>
-      <div>{searchResults.allResults.length} matches found for '{pkgName}'.</div>
+      <div>{searchResults.allResults.length} match(es) found for '{pkgName}'.</div>
       <div className='result'>
         <div className='pkg-arch'>CPU Architecture</div>
         <div className='pkg-repo'>Repository</div>
@@ -31,7 +30,7 @@ export default function Results(){
           if (result.pkgname===searchResults.exactMatch.pkgname){
             
           }else{
-            return(<ResultsPackage key={result.installed_size} result={result} />);
+            return(<ResultsPackage key={result.installed_size+result.compressed_size} result={result} />);
           }
         })
       }
@@ -44,10 +43,8 @@ let showExactMatch = function(searchResults){
     return(<></>)
   }
   else{
-    console.log()
     return(
     <div className='exact-match'>
-      <div>Exact match for {searchResults.exactMatch.pkgname}:</div>
       <ResultsPackage result={searchResults.exactMatch} />
     </div>)
   }

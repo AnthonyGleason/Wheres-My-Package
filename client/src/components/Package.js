@@ -1,14 +1,11 @@
 import React from 'react';
+import {v4 as uuidGen} from 'uuid';
 import {useLocation, useParams} from 'react-router-dom';
 
 export default function Package(){
   const location = useLocation();
   const pkgName = useParams().pkgName;
   let pkgData = getPkgData(location.state.searchResults.allResults,pkgName);
-  pkgData.archUrl = `https://archlinux.org/packages/${pkgData.repo}/${pkgData.arch}/${pkgData.pkgname}`;
-  pkgData.maintainers.join(', ')
-  pkgData.licenses.join(', ')
-  console.log(pkgData);
   return (
     <div className='package'>
       <div className='package-title'>{pkgName}</div>
@@ -78,7 +75,7 @@ export default function Package(){
         <div className='pkg-title'>Dependencies: ({pkgData.depends.length}) Packages</div>
         {
           pkgData.depends.map((item)=>{
-            return(<li>{item}</li>)
+            return(<li key={uuidGen()}>{item}</li>)
           })
         }
       </ul>
@@ -86,14 +83,14 @@ export default function Package(){
         <div className='pkg-title'>Optional Dependencies: ({pkgData.optdepends.length}) Packages</div>
         {
           pkgData.optdepends.map((item)=>{
-            return(<li>{item}</li>)
+            return(<li key={uuidGen()}>{item}</li>)
           })
         }
       </ul>
     </div>
   );  
 }
-
+//gets current package data from the allResults array based on the pkgName obtained from useParams
 let getPkgData = function(allResults,pkgName){
   let pkgData = null;
   allResults.forEach((result)=>{

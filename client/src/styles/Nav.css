@@ -1,0 +1,12 @@
+.nav{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.nav ul{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}

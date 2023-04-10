@@ -1,8 +1,9 @@
 import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/App.css';
-import searchImg from '../assets/archive-search-outline.svg';
 import loadingImg from '../assets/loading.svg';
+import pkgImg from '../assets/package.svg';
+import heartImg from '../assets/heart.svg';
 import { getLucky } from '../lucky';
 
 function App() {
@@ -14,9 +15,10 @@ function App() {
       <div className='err-messages'>{message}</div>
       <form>
         <div>
-          <label htmlFor='pkgName'><img src={searchImg} alt='a square box with a magnifying glass on top of it' /></label>
+          <label htmlFor='pkgName'><img src={pkgImg} alt='a square package' /></label>
           <input type='text' placeholder={'What package are you looking for?'} value={pkgInput} onChange={(e)=>{setPkgInput(e.target.value)}} required/>
           <img id='loading' className='hidden' src={loadingImg} alt='loading' />
+          <div>Made with <img src={heartImg} /> by Anthony Infortunio</div>
         </div>
         <button id='package-search' type='button' onClick={()=>{handleSearch(pkgInput,navigate,setMessage)}}>Package Search</button>
         <button id='lucky-search'type='button' onClick={()=>{handleLucky(navigate,setMessage)}}>I'm Feeling Lucky</button>
@@ -52,6 +54,7 @@ let hideLoading = function(){
 // gets a random package from the lucky array and show results for it
 let handleLucky = function(navigate,setMessage){
   const pkgName = getLucky();
+  console.log(pkgName);
   handleSearch(pkgName,navigate,setMessage);
 };
 

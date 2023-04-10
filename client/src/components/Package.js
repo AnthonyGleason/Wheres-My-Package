@@ -9,10 +9,10 @@ export default function Package(){
   pkgData.maintainers.join(', ')
   pkgData.licenses.join(', ')
   console.log(pkgData);
-  return(
+  return (
     <div className='package'>
       <div className='package-title'>{pkgName}</div>
-      <form className='package-content'>
+      <form className='package-details'>
         <div>
           <label>Architecture:</label>
           <span>{pkgData.arch}</span>
@@ -74,8 +74,24 @@ export default function Package(){
           <span>{pkgData.flag_date}</span>
         </div>
       </form>
+      <ul className='dependencies'>
+        <div className='pkg-title'>Dependencies: ({pkgData.depends.length}) Packages</div>
+        {
+          pkgData.depends.map((item)=>{
+            return(<li>{item}</li>)
+          })
+        }
+      </ul>
+      <ul className='opt-dependencies'>
+        <div className='pkg-title'>Optional Dependencies: ({pkgData.optdepends.length}) Packages</div>
+        {
+          pkgData.optdepends.map((item)=>{
+            return(<li>{item}</li>)
+          })
+        }
+      </ul>
     </div>
-  )
+  );  
 }
 
 let getPkgData = function(allResults,pkgName){

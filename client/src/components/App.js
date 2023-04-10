@@ -23,7 +23,7 @@ function App() {
       </form>
     </div>
   );
-}
+};
 
 export default App;
 
@@ -53,7 +53,7 @@ let hideLoading = function(){
 let handleLucky = function(navigate,setMessage){
   const pkgName = getLucky();
   handleSearch(pkgName,navigate,setMessage);
-}
+};
 
 //handles search when the user presses the search button. This also used for lucky search after a pkgName is generated.
 let handleSearch = function(pkgName,navigate,setMessage){

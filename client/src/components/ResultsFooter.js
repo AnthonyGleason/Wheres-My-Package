@@ -4,11 +4,21 @@ import {v4 as uuidGen} from 'uuid';
 export default function ResultsFooter({currentPage, setCurrentPage,totalPages}){
   return(
     <div className="results-footer">
+      <button onClick={()=>{handlePageButton(currentPage,setCurrentPage,1,totalPages)}}>Prev</button>
       {
         renderPages(currentPage,setCurrentPage,totalPages)
       }
+      <button onClick={()=>{handlePageButton(currentPage,setCurrentPage,1,totalPages)}}>Next</button>
     </div>
   )
+}
+let handlePageButton = function(currentPage,setCurrentPage,modifier,totalPages){
+  let newPage = currentPage;
+  if (modifier===1) newPage = currentPage+modifier;
+  if (modifier===-1) newPage = currentPage-modifier;
+  if (newPage<1) newPage = totalPages;
+  if (newPage>totalPages) newPage = 1;
+  setCurrentPage(newPage);
 }
 /*
   renders current page navigation
@@ -19,34 +29,26 @@ let renderPages = function(currentPage,setCurrentPage,totalPages){
   //validate current page
   if (currentPage<1 || currentPage>totalPages) currentPage=1;
   let pageArr = [];
-  //There is space 4 spaces below and 4 spaces above the current page. This centers the current page at a number higher than 1.
-  if (currentPage-4>1 && currentPage+4<totalPages && currentPage.length>9){
-    pageArr= [
-      currentPage-4,currentPage-3,currentPage-2,currentPage-1,
-                        currentPage,
-      currentPage+1,currentPage+2,currentPage+3,currentPage+4
-    ];
-  }else if(currentPage-4<1 && totalPages>9){ 
-    //There is no space to fit 4 numbers to the left of the currentPage. The totalpages is >9 which means we can just print pages 1-9 to the user.
-    let counter=1;
-    while (counter<9 && counter<=totalPages){
-      pageArr.push(counter);
-      counter++;
-    }
-  }else if(currentPage+4>totalPages && totalPages>9){
-    //There is no space to fit 4 numbers above the current page. the totalpages is greater than 9. we can assume that we are at the end of the pages so we can count backwards to generate the page numbers.
-    let counter=1;
-    while (counter<9 || counter>totalPages){
-      pageArr.unshift(totalPages-counter);
-      counter++;
-    }
-  }else{
-    let counter=1;
-    //otherwise just print the pages
-    while (counter<totalPages){
-      pageArr.push(counter);
-      counter++;
-    }
+  let start = currentPage - 4;
+  let end = currentPage + 4;
+  //add numbers to the end from the start
+  if (start < 1) {
+    end += Math.abs(start) + 1;
+    start = 1;
+  }
+  //add numbers to the start from the end
+  if (end > totalPages) {
+    start -= end - totalPages;
+    end = totalPages;
+  }
+  //make sure start and end are within the valid range
+  if (start < 1) start = 1;
+  if (end > totalPages) end = totalPages;
+  //print out counter to the end
+  let counter = start;
+  while (counter <= end) {
+    pageArr.push(counter);
+    counter++;
   }
   return(
     <ul>

@@ -13,9 +13,12 @@ export default function Results(){
   const {pkgName,searchResults} = state;
   const navigate = useNavigate();
   //setup current page
+  const resultsPerPage=20;
   const [currentPage,setCurrentPage] = useState(1);
+  //snip array to current page selection
+  const arrSnip = searchResults.allResults.slice(currentPage*resultsPerPage,(currentPage*resultsPerPage)+resultsPerPage)
   //dividing by 20 because we are showing 20 results per page. additionally uses Math.ceil to round up to the nearest int (we can't have half a page)
-  const totalPages = Math.ceil(searchResults.allResults.length / 20);
+  const totalPages = Math.ceil(searchResults.allResults.length / resultsPerPage);
   return(
     <div className='results'>
       <div>{searchResults.allResults.length} match(es) found for '{pkgName}'.</div>
@@ -31,7 +34,7 @@ export default function Results(){
       }} />
       {showExactMatch(searchResults,navigate,pkgName)}
       {
-        searchResults.allResults.map((result)=>{
+        arrSnip.map((result)=>{
           if (searchResults.exactMatch.pkgname!==result.pkgname){
             return(
               <div key={uuidGen()} onClick={()=>{handlePackagePress(navigate,searchResults,result.pkgname)}}>

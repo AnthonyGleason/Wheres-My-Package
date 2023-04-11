@@ -1,4 +1,4 @@
-// should be able to sort, arch/name/lastUpdated/flagDate
+// should be able to sort, arch/repo/name/lastUpdated/flagDate
 
 import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';

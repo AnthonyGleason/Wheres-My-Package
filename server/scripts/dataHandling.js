@@ -77,7 +77,11 @@ let organizeData = function(dataArr){
     if (Array.isArray(i.licenses)){
       i.licenses.join(', ');
     }
-    i.archUrl = `https://archlinux.org/packages/${i.repo}/${i.arch}/${i.pkgname}`;
+    if (i.repo==='aur'){
+      i.archUrl = `https://aur.archlinux.org/packages/${i.pkgname}`;
+    }else{
+      i.archUrl = `https://archlinux.org/packages/${i.repo}/${i.arch}/${i.pkgname}`;
+    }
     i.compressed_size = formatPackageSize(i.compressed_size);
     i.installed_size = formatPackageSize(i.installed_size);
   })

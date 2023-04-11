@@ -54,7 +54,6 @@ let hideLoading = function(){
 // gets a random package from the lucky array and show results for it
 let handleLucky = function(navigate,setMessage){
   const pkgName = getLucky();
-  console.log(pkgName);
   handleSearch(pkgName,navigate,setMessage);
 };
 

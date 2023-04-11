@@ -36,7 +36,6 @@ module.exports = router;
 let formatAurData = function(aurData){
   let tempData = [];
   aurData.forEach((i)=>{
-    console.log(i);
     let tempItem = {
       arch: 'any',
       repo: 'aur',

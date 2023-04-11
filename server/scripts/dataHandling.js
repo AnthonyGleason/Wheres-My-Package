@@ -1,8 +1,8 @@
-let findExactMatch = function(archResults,packageName){
+let findExactMatch = function(allResults,packageName){
   let exactMatch = {
     pkgname: '',
   };
-  archResults.forEach((match)=>{
+  allResults.forEach((match)=>{
     if (match.pkgname===packageName.toLowerCase()){
       exactMatch=match;
     }
@@ -27,7 +27,19 @@ let getArchResults = async function(packageName,res){
 };
 
 let getAurResults = async function(packageName,res){
-  // `https://aur.archlinux.org/rpc?v=5&type=search&arg=${packageName}`
+  let aurResults=[];
+  try{
+    let response = await fetch(`https://aur.archlinux.org/rpc?v=5&type=search&arg=${packageName}`,{
+      method: "GET",
+    });
+    if (response.ok && response.headers.get('content-type').includes('application/json')){
+      aurResults = (await response.json()).results;
+    }
+  }catch(e){
+    console.log(`Error ${e} when fetching search results for package ${packageName} in the arch api`);
+    res.status(500).json({error: `Error when fetching search results for package ${packageName} in the arch api`})
+  }
+  return aurResults;
 }
 
 let formatDate = function(date){
@@ -54,4 +66,21 @@ let formatPackageSize = function(sizeBytes) {
   }
 };
 
-module.exports = {findExactMatch,getArchResults,formatDate,formatPackageSize};
+let organizeData = function(dataArr){
+  dataArr.forEach((i)=>{
+    i.last_update=formatDate(i.last_update);
+    i.build_date=formatDate(i.build_date);
+    i.flag_date=formatDate(i.flag_date);
+    if (Array.isArray(i.maintainers)){
+      i.maintainers = i.maintainers.join(', ');
+    }
+    if (Array.isArray(i.licenses)){
+      i.licenses.join(', ');
+    }
+    i.archUrl = `https://archlinux.org/packages/${i.repo}/${i.arch}/${i.pkgname}`;
+    i.compressed_size = formatPackageSize(i.compressed_size);
+    i.installed_size = formatPackageSize(i.installed_size);
+  })
+  return dataArr;
+}
+module.exports = {findExactMatch,getArchResults,formatDate,formatPackageSize,getAurResults,organizeData};

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {findExactMatch,getArchResults,formatDate,formatPackageSize} = require('../scripts/dataHandling');
+const {findExactMatch,getArchResults,formatDate,formatPackageSize,getAurResults,organizeData} = require('../scripts/dataHandling');
 
 // /api
 router.get('/', (req, res, next) => {
@@ -14,26 +14,49 @@ router.get('/search/:packageName', async(req,res,next)=>{
   const packageName = req.params.packageName;
   //get arch query results
   let archResults = await getArchResults(packageName,res);
+  //get aur query results
+  let aurResults = await getAurResults(packageName,res);
+  //format aur data into a temp array
+  aurResults = formatAurData(aurResults);
+  //join both arrays
+  let allResults = archResults.concat(aurResults);
   //organize data
-  archResults.forEach((i)=>{
-    i.last_update=formatDate(i.last_update);
-    i.build_date=formatDate(i.build_date);
-    i.flag_date=formatDate(i.flag_date);
-    i.maintainers.join(', ');
-    i.licenses.join(', ');
-    i.archUrl = `https://archlinux.org/packages/${i.repo}/${i.arch}/${i.pkgname}`;
-    i.compressed_size = formatPackageSize(i.compressed_size);
-    i.installed_size = formatPackageSize(i.installed_size);
-  })
-  
+  allResults=organizeData(allResults);
   //check results for exact match
-  exactMatch = findExactMatch(archResults,packageName);
+  exactMatch = findExactMatch(allResults,packageName);
   //return package results
   res.status(200).json({
-    allResults: archResults,
+    allResults: allResults,
     exactMatch: exactMatch,
   });
 })
 
 module.exports = router;
 
+let formatAurData = function(aurData){
+  let tempData = [];
+  aurData.forEach((i)=>{
+    console.log(i);
+    let tempItem = {
+      arch: 'any',
+      repo: 'aur',
+      pkgdesc: i.Description,
+      url: i.URL,
+      archURL: `https://aur.archlinux.org/packages/${i.Name}`,
+      licenses: 'N/A',
+      maintainers: i.Maintainer,
+      compressed_size: 'N/A',
+      installed_size: 'N/A',
+      last_update: new Date(i.LastModified * 1000).toLocaleDateString(),
+      packager: [i.Maintainer],
+      pkgname: i.Name,
+      votes: i.NumVotes,
+      pkgver: i.Version
+    };
+    if (i.OutOfDate) {
+      tempItem.flag_date = new Date(i.OutOfDate * 1000).toLocaleDateString();
+    }
+    tempData.push(tempItem);
+  });
+  return tempData;
+}

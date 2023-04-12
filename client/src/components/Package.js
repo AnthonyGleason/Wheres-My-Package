@@ -5,7 +5,7 @@ import {useLocation, useParams} from 'react-router-dom';
 export default function Package(){
   const location = useLocation();
   const pkgName = useParams().pkgName;
-  let pkgData = getPkgData(location.state.searchResults.allResults,pkgName);
+  let pkgData = getPkgData(location.state.searchRes.allResults,pkgName);
   if (pkgData.repo==='aur'){
     return(
       <div className='package'>

@@ -15,8 +15,8 @@ export default function Results(){
   //setup current page
   const resultsPerPage=20;
   const [currentPage,setCurrentPage] = useState(1);
-  //snip array to current page selection
-  const arrSnip = searchResults.allResults.slice(currentPage*resultsPerPage,(currentPage*resultsPerPage)+resultsPerPage)
+  //snip array to current page selection which is the current calculated page * 20
+  const arrSnip = searchResults.allResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage);
   //dividing by 20 because we are showing 20 results per page. additionally uses Math.ceil to round up to the nearest int (we can't have half a page)
   const totalPages = Math.ceil(searchResults.allResults.length / resultsPerPage);
   return(

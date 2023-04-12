@@ -38,7 +38,7 @@ let renderPages = function(currentPage,setCurrentPage,totalPages){
   }
   //add numbers to the start from the end
   if (end > totalPages) {
-    start -= end - totalPages;
+    start -= end - totalPages-1;
     end = totalPages;
   }
   //make sure start and end are within the valid range

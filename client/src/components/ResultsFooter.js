@@ -4,7 +4,7 @@ import {v4 as uuidGen} from 'uuid';
 export default function ResultsFooter({currentPage, setCurrentPage,totalPages}){
   return(
     <div className="results-footer">
-      <button onClick={()=>{handlePageButton(currentPage,setCurrentPage,1,totalPages)}}>Prev</button>
+      <button onClick={()=>{handlePageButton(currentPage,setCurrentPage,-1,totalPages)}}>Prev</button>
       {
         renderPages(currentPage,setCurrentPage,totalPages)
       }
@@ -12,12 +12,12 @@ export default function ResultsFooter({currentPage, setCurrentPage,totalPages}){
     </div>
   )
 }
-let handlePageButton = function(currentPage,setCurrentPage,modifier,totalPages){
+let handlePageButton = function(currentPage, setCurrentPage, modifier, totalPages) {
   let newPage = currentPage;
-  if (modifier===1) newPage = currentPage+modifier;
-  if (modifier===-1) newPage = currentPage-modifier;
-  if (newPage<1) newPage = totalPages;
-  if (newPage>totalPages) newPage = 1;
+  if (modifier === 1) newPage = currentPage + modifier;
+  if (modifier === -1) newPage = currentPage + modifier;
+  if (newPage < 1) newPage = totalPages;
+  if (newPage > totalPages) newPage = 1;
   setCurrentPage(newPage);
 }
 /*
@@ -54,7 +54,12 @@ let renderPages = function(currentPage,setCurrentPage,totalPages){
     <ul>
       {
         pageArr.map((i)=>{
-          return(<li onClick={()=>setCurrentPage(i)} key={uuidGen()}>{i}</li>);
+          if (i===currentPage){
+            return(<li className='current-page' onClick={()=>setCurrentPage(i)} key={uuidGen()}>{i}</li>);
+          }else{
+            return(<li className='page' onClick={()=>setCurrentPage(i)} key={uuidGen()}>{i}</li>);
+          }
+          
         })
       }
     </ul>

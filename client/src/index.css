@@ -25,11 +25,6 @@ code {
 .show{
   display: block;
 }
-#root{
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
 :root {
   --color-a: #2c7da0;
   --color-b: #4fb3bf;

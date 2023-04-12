@@ -3,7 +3,7 @@ import {useLocation, useNavigate, useResolvedPath, useRoutes} from 'react-router
 import {v4 as uuidGen} from 'uuid';
 import ResultsFooter from './ResultsFooter';
 import ResultsPackage from './ResultsPackage';
-
+import '../styles/Results.css'
 export default function Results(){
   const location = useLocation();
   const state = location.state;
@@ -34,7 +34,7 @@ export default function Results(){
         <div className='pkg-repo pointer' onClick={()=>{sortData(searchRes,setSearchRes,'repo',repoOrder,setRepoOrder)}}>Repository</div>
         <div className='pkg-name pointer' onClick={()=>{sortData(searchRes,setSearchRes,'pkgname',pkgNameOrder,setPkgNameOrder)}}>Package Name</div>
         <div className='pkg-version pointer' onClick={()=>{sortData(searchRes,setSearchRes,'pkgver',pkgVersionOrder,setPkgVersionOrder)}}>Package Version</div>
-        <div className='pkg-description pointer' onClick={()=>{sortData(searchRes,setSearchRes,'pkgdesc',pkgDescOrder,setPkgDescOrder)}}>Package Descrption</div>
+        <div className='pkg-description pointer' onClick={()=>{sortData(searchRes,setSearchRes,'pkgdesc',pkgDescOrder,setPkgDescOrder)}}>Package Description</div>
         <div className='pkg-last-updated pointer'>Last Updated Date</div>
         <div className='pkg-flag-date pointer'>Flag Date</div>
       </div>

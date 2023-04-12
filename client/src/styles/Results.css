@@ -1,0 +1,145 @@
+@media screen and (max-width: 380px) {
+  .pkg-flag-date {
+    display: none;
+  }
+  
+  .result * {
+    padding: 10px;
+    font-size: 2.5vw;
+  }
+  
+  .results-footer {
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  .current-page {
+    font-size: 16px;
+  }
+  
+  .results-footer li:hover,
+  .current-page {
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+
+@media screen and (min-width: 381px) and (max-width: 990px) {
+  .pkg-flag-date {
+    display: none;
+  }
+  
+  .result * {
+    font-size: 2.5vw;
+  }
+  
+  .results-footer {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  .current-page {
+    font-size: 16px;
+  }
+  
+  .results-footer li:hover,
+  .current-page {
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .pkg-flag-date {
+    display: block;
+  }
+  
+  .result * {
+    padding: 20px;
+    font-size: 1vw;
+  }
+  
+  .results-footer {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .current-page {
+    font-size: 18px;
+  }
+  
+  .results-footer li:hover,
+  .current-page {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+.results:first-child {
+  text-align: center;
+  margin: 10px;
+}
+
+.result {
+  border: 1px solid grey;
+  border-radius: 5px;
+  display: flex;
+  min-height: 80px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.result * {
+  width: 100%;
+  height: max-content;
+  text-align: center;
+  padding: 5px;
+}
+
+.results-footer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin: 10px;
+}
+
+.results-footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 700px;
+  color: gray;
+  cursor: pointer;
+}
+
+.current-page {
+  color: var(--color-c);
+  font-weight: 700;
+}
+
+.results-footer li:hover {
+  color: var(--color-c);
+  font-weight: 700;
+}
+
+.aur{
+  background-color: rgb(245, 218, 245);
+}
+.core{
+  background-color: rgb(211, 245, 234);
+}
+.community{
+  background-color: antiquewhite;
+}
+.extra{
+  background-color: rgb(253, 179, 195);
+}
+.multilib{
+  background-color: rgb(216, 212, 255);
+}
+.kde-unstable{
+  background-color: rgb(223, 223, 223);
+}

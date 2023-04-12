@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
+  height: 100vh;
   background-color: rgb(233, 233, 252);
 }
 

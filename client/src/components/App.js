@@ -19,6 +19,7 @@ function App() {
           <input type='text' placeholder={'What package are you looking for?'} value={pkgInput} onChange={(e)=>{setPkgInput(e.target.value)}} required/>
           <img id='loading' className='hidden' src={loadingImg} alt='loading' />
           <div>Made with <img src={heartImg} /> by Anthony Infortunio</div>
+          <div>This page is open source! View the source code <a href='https://github.com/antinf/Wheres-My-Package'>here!</a></div>
         </div>
         <button id='package-search' type='button' onClick={()=>{handleSearch(pkgInput,navigate,setMessage)}}>Package Search</button>
         <button id='lucky-search'type='button' onClick={()=>{handleLucky(navigate,setMessage)}}>I'm Feeling Lucky</button>

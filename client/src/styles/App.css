@@ -1,6 +1,87 @@
-.hidden{
-  display: none;
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  background-color: rgb(233, 233, 252);
 }
-.show{
-  display: block;
+
+.App form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App form div {
+  margin: 10px;
+}
+
+.App form input {
+  width: 80%;
+  height: 30px;
+  border: 2px solid var(--color-c);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.App form button {
+  border: 2px solid var(--color-c);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--color-e);
+}
+.App form button:hover{
+  background-color: var(--color-d);
+}
+.App form em{
+  color: var(--color-c);
+}
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-img {
+  width: 50px;
+  align-self: center;
+}
+
+.search-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.home-title {
+  font-size: 3em;
+  color: var(--color-c);
+  font-weight: 700;
+  text-align: center;
+}
+.desc{
+  text-align: center;
+}
+.loading {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  height: 70px;
+  width: 70px;
+}
+
+.loading img {
+  height: 100%;
+  width: 100%;
+}
+.credits,
+.source{
+  text-align: center;
+}
+.source a{
+  text-decoration: none;
+  font-weight: 700;
 }

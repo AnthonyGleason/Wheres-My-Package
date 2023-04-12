@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <Nav />
+    {/* <Nav /> */}
     <BrowserRouter>
       <Routes>
         {/* '/' route is the homepage which allows the user to search for packages */}

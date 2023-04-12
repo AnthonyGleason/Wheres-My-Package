@@ -15,14 +15,22 @@ function App() {
       <div className='err-messages'>{message}</div>
       <form>
         <div>
-          <label htmlFor='pkgName'><img src={pkgImg} alt='a square package' /></label>
-          <input type='text' placeholder={'What package are you looking for?'} value={pkgInput} onChange={(e)=>{setPkgInput(e.target.value)}} required/>
-          <img id='loading' className='hidden' src={loadingImg} alt='loading' />
-          <div>Made with <img src={heartImg} /> by Anthony Infortunio</div>
-          <div>This page is open source! View the source code <a href='https://github.com/antinf/Wheres-My-Package'>here!</a></div>
+          <div className='home-title'>Where's My Package?</div>
+          <div className='desc'>"<em>An Arch Linux Package Aggregator For Official and Aur Packages</em> "</div>
+          <div className='search'>
+            <img className='search-img' src={pkgImg} alt='a square package' />
+            <input type='text' placeholder={'Enter a package (i.e Systemd)'} value={pkgInput} onChange={(e)=>{setPkgInput(e.target.value)}} required/>
+          </div>
+          <div className='loading hidden'>
+            <img id='loading' src={loadingImg} alt='loading' />
+          </div>
+          <div className='search-buttons'>
+            <button id='package-search' type='button' onClick={()=>{handleSearch(pkgInput,navigate,setMessage)}}>Package Search</button>
+            <button id='lucky-search'type='button' onClick={()=>{handleLucky(navigate,setMessage)}}>I'm Feeling Lucky</button>
+          </div>
+          <div className='credits'>Made with <img src={heartImg} /> by Anthony Infortunio</div>
+          <div className='source'>This page is open source! View the source code <a href='https://github.com/antinf/Wheres-My-Package'><em>here</em></a></div>
         </div>
-        <button id='package-search' type='button' onClick={()=>{handleSearch(pkgInput,navigate,setMessage)}}>Package Search</button>
-        <button id='lucky-search'type='button' onClick={()=>{handleLucky(navigate,setMessage)}}>I'm Feeling Lucky</button>
       </form>
     </div>
   );
@@ -36,7 +44,7 @@ let showLoading = function(){
   document.querySelector('#package-search').disabled = true;
   document.querySelector('#lucky-search').disabled = true;
   //show loading spinner
-  const loading = document.querySelector('#loading');
+  const loading = document.querySelector('.loading');
   loading.classList.remove('hidden');
   loading.classList.add('loading');
 };

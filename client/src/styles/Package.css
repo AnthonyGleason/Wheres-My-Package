@@ -1,0 +1,7 @@
+.dependencies-container{
+  display: flex;
+  justify-content: center;
+}
+.dependencies-container ul{
+  list-style:decimal;
+}

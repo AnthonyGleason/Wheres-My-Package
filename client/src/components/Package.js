@@ -1,7 +1,8 @@
 import React from 'react';
 import {v4 as uuidGen} from 'uuid';
 import {useLocation, useParams} from 'react-router-dom';
-
+import searchImg from '../assets/search.svg';
+import '../styles/Package.css';
 export default function Package(){
   const location = useLocation();
   const pkgName = useParams().pkgName;
@@ -10,6 +11,7 @@ export default function Package(){
     return(
       <div className='package'>
         <div className='package-title'>{pkgName}</div>
+        <img className='search-img' src={searchImg} alt='magnifying glass' onClick={()=>{window.location.href='/'}}/>
         <form className='package-details'>
           <div>
             <label>Architecture:</label>
@@ -59,6 +61,7 @@ export default function Package(){
     return (
       <div className='package'>
         <div className='package-title'>{pkgName}</div>
+        <img className='search-img' src={searchImg} alt='magnifying glass' onClick={()=>{window.location.href='/'}}/>
         <form className='package-details'>
           <div>
             <label>Architecture:</label>
@@ -121,22 +124,25 @@ export default function Package(){
             <span>{pkgData.flag_date}</span>
           </div>
         </form>
-        <ul className='dependencies'>
-          <div className='pkg-title'>Dependencies: ({pkgData.depends.length}) Packages</div>
-          {
-            pkgData.depends.map((item)=>{
-              return(<li key={uuidGen()}>{item}</li>)
-            })
-          }
-        </ul>
-        <ul className='opt-dependencies'>
-          <div className='pkg-title'>Optional Dependencies: ({pkgData.optdepends.length}) Packages</div>
-          {
-            pkgData.optdepends.map((item)=>{
-              return(<li key={uuidGen()}>{item}</li>)
-            })
-          }
-        </ul>
+        <div className='dependencies-container'>
+          <ul className='dependencies'>
+            <div className='pkg-title'>Dependencies: ({pkgData.depends.length}) Packages</div>
+            {
+              pkgData.depends.map((item)=>{
+                return(<li key={uuidGen()}>{item}</li>)
+              })
+            }
+          </ul>
+          <ul className='opt-dependencies'>
+            <div className='pkg-title'>Optional Dependencies: ({pkgData.optdepends.length}) Packages</div>
+            {
+              pkgData.optdepends.map((item)=>{
+                return(<li key={uuidGen()}>{item}</li>)
+              })
+            }
+          </ul>
+        </div>
+        
       </div>
     );  
   }

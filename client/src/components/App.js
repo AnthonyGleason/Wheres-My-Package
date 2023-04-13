@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/App.css';
 import loadingImg from '../assets/loading.svg';
@@ -11,6 +11,12 @@ function App() {
   const navigate = useNavigate();
   const [pkgInput, setPkgInput] = useState('');
   const [message,setMessage] = useState('');
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      handleSearch(pkgInput, navigate, setMessage);
+    }
+  };
   return (
     <div className="App">
       <div className='err-messages'>{message}</div>
@@ -20,7 +26,7 @@ function App() {
           <div className='desc'>"<em>An Arch Linux Package Aggregator For <span className='home-em-text'>Official</span> and <span className='home-em-text'>Aur</span> Packages</em> "</div>
           <div className='search'>
             <img className='search-img-home' src={pkgImg} alt='a square package' />
-            <input type='text' placeholder={'Enter a package (i.e Systemd)'} value={pkgInput} onChange={(e)=>{setPkgInput(e.target.value)}} required/>
+            <input className='search-input' type='text' placeholder={'Enter a package (i.e Systemd)'} value={pkgInput} onChange={(e)=>{setPkgInput(e.target.value)}} onKeyDown={handleKeyDown} required/>
           </div>
           <div className='loading hidden'>
             <img id='loading' src={loadingImg} alt='loading' />

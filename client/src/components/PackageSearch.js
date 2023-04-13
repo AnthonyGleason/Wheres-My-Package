@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../styles/PackageSearch.css';
-export default function PackageSearch({allResults,setAllResults}){
+import loadingImg from '../assets/loading.svg';
+export default function PackageSearch({allResults,setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay}){
   //search input states
   const [archInput,setArchInput] = useState('any');
   const [repoInput,setRepoInput] = useState('any');
@@ -35,15 +36,17 @@ export default function PackageSearch({allResults,setAllResults}){
           <label>Search Terms</label>
           <input value={searchInput} onChange={(e)=>{setSearchInput(e.target.value)}} />
         </div>
-        <button type='button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults)}}>Search</button>
+        <button type='button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay)}}>Search</button>
+        <img className='loading' style={{display: loadingDisplay}} src={loadingImg} alt='spinning circle indicating loading' />
       </form>
     </div>
   )
 }
 
-export let handleSearch = async function(archInput,repoInput,searchInput,setAllResults){
+export let handleSearch = async function(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay){
   let searchResults = [];
   try{
+    setLoadingDisplay('block');
     //form validation
     if (!searchInput || searchInput==='') throw new Error('The package search input cannot be left blank.');
     //get data from sever
@@ -51,11 +54,14 @@ export let handleSearch = async function(archInput,repoInput,searchInput,setAllR
       method : 'GET',
     });
     searchResults = (await response.json());
+    setLastSearchTerm(searchInput);
     if (searchResults.length===0){
       throw new Error('No results found.');
     }
   }catch(e){
     console.log(`${e} when getting package data`);
   }
+  if (searchResults.allResults===undefined) return 0;
   setAllResults(searchResults.allResults);
+  setLoadingDisplay('none');
 }

@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import '../styles/Results.css';
 import Result from '../components/Result.js';
-export default function Results({allResults}){
+import { v4 as uuidGen } from 'uuid';
+export default function Results({allResults,lastSearchTerm}){
   const [resultsSnip,setResultsSnip] = useState([]);
   const [currentPage,setCurrentPage] = useState(1);
   const [totalPages,setTotalPages] = useState(1);
@@ -13,7 +14,7 @@ export default function Results({allResults}){
   return(
     <div className='results'>
       <div className='results-nav'>
-        <div className='results-nav-title'>{allResults.length} matching packages found. Page {currentPage} of {totalPages}</div>
+        <div className='results-nav-title'>{allResults.length} matching packages found for {lastSearchTerm}. Page {currentPage} of {totalPages}</div>
         <ul className='results-nav-buttons'>
           <li><button onClick={()=>{handlePageChange(currentPage,setCurrentPage,-1,totalPages)}}>{'< Prev'}</button></li>
           <li><button onClick={()=>{handlePageChange(currentPage,setCurrentPage,1,totalPages)}}>{'Next >'}</button></li>
@@ -31,7 +32,7 @@ export default function Results({allResults}){
         </div>
         {resultsSnip.map((result)=>{
           return(
-            <Result arch={result.arch} repo={result.repo} name={result.pkgname} version={result.pkgver} description={result.pkgdesc} lastUpdated={result.last_update} flagDate={result.flag_date} />
+            <Result key={uuidGen()} arch={result.arch} repo={result.repo} name={result.pkgname} version={result.pkgver} description={result.pkgdesc} lastUpdated={result.last_update} flagDate={result.flag_date} />
           )
         })}
       </div>

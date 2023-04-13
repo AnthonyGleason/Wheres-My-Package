@@ -1,3 +1,26 @@
+.results{
+  background-color: var(--content-bg-color);
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.results-nav{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.results-nav-buttons{
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.results-nav-buttons button{
+  padding: 8px;
+}
+.results-content{
+  flex-grow: 1;
+}
 .result{
   display: flex;
   width: 100%;

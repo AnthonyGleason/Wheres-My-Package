@@ -4,10 +4,9 @@ import '../styles/Nav.css';
 export default function Nav(){
   return(
     <div className='nav'>
-      <img src={archLogo} />
+      <img src={archLogo} className='pointer' onClick={()=>{window.location.href='/'}} />
       <ul className='nav-buttons'>
-        <li>Packages</li>
-        <li>Contact</li>
+        <li className='pointer' onClick={()=>{window.location.href='/'}}>Packages</li>
       </ul>
     </div>
   )

@@ -22,20 +22,26 @@
 .results-content{
   flex-grow: 1;
 }
-.result{
+.result,
+.result-labels{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   text-align: center;
   padding: 10px;
 }
+.result-labels{
+  border-bottom: 1px solid #888;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .result:hover{
   cursor: pointer;
   background-color: rgb(255, 237, 214);
 }
-.result *{
+.result *,
+.result-labels *{
   font-size: 13px;
-  margin: 2px;
   height: max-content;
   display: flex;
   justify-content: center;

@@ -12,6 +12,7 @@
   color: white;
   align-items: center;
   list-style: none;
-  gap: 10px;
+  gap: 20px;
   padding: 10px;
+  font-weight: 700;
 }

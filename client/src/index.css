@@ -16,9 +16,15 @@ code {
   padding: 0;
   box-sizing: border-box;
 }
+button{
+  cursor: pointer;
+}
 :root {
   --nav-bg-color: #333;
   --nav-border-color: #08c;
   --content-bg-color: #ecf2f5;
   --results-alt-bg-color: #e4eeff;
+}
+.pointer{
+  cursor: pointer;
 }

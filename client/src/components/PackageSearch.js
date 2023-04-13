@@ -34,7 +34,13 @@ export default function PackageSearch({allResults,setAllResults,setLastSearchTer
         </div>
         <div className='search-terms'>
           <label>Search Terms</label>
-          <input value={searchInput} onChange={(e)=>{setSearchInput(e.target.value)}} />
+          <input value={searchInput} onChange={(e)=>{setSearchInput(e.target.value)}} onKeyDown={(e) => {
+              if (e.key==='Enter'){
+                e.preventDefault();
+                handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay);
+              }
+            }} 
+          />
         </div>
         <button type='button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay)}}>Search</button>
         <img className='loading' style={{display: loadingDisplay}} src={loadingImg} alt='spinning circle indicating loading' />
@@ -53,15 +59,25 @@ export let handleSearch = async function(archInput,repoInput,searchInput,setAllR
     let response = await fetch(`https://wheresmypackage.herokuapp.com/api/search/${searchInput}`,{
       method : 'GET',
     });
-    searchResults = (await response.json());
+    searchResults = (await response.json()).allResults;
     setLastSearchTerm(searchInput);
     if (searchResults.length===0){
       throw new Error('No results found.');
     }
+    //filter array by architecture
+    searchResults = searchResults.filter((result)=>{
+      return (result.arch===archInput);
+    })
+    //filter array by repository
+    searchResults = searchResults.filter((result)=>{
+      //if the any field is selected then return every item
+      if (repoInput.toLowerCase()==='any') return true;
+      return (result.repo===repoInput.toLowerCase());
+    })
   }catch(e){
     console.log(`${e} when getting package data`);
   }
-  if (searchResults.allResults===undefined) return 0;
-  setAllResults(searchResults.allResults);
+  if (searchResults===undefined) return 0;
+  setAllResults(searchResults);
   setLoadingDisplay('none');
 }

@@ -16,21 +16,8 @@ code {
   padding: 0;
   box-sizing: border-box;
 }
-.pointer{
-  cursor: pointer;
-}
-.hidden{
-  display: none;
-}
-.show{
-  display: block;
-}
 :root {
-  --color-a: #ffadad; /* pastel red */
-  --color-b: #ffd6a5; /* pastel orange */
-  --color-c: #fdffb6; /* pastel yellow */
-  --color-d: #caffbf; /* pastel green */
-  --color-e: #9bf6ff; /* pastel blue */
-  --color-f: #a0c4ff; /* pastel purple */
-  --color-g: #bdbdbd; /* pastel gray */
+  --nav-bg-color: #333;
+  --nav-border-color: #08c;
+  --content-bg-color: #ecf2f5
 }

@@ -9,7 +9,10 @@ var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
 
 var app = express();
-
+const corsOptions = {
+  origin: 'https://antinf.github.io/Wheres-My-Package/'
+};
+app.use(cors(corsOptions));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

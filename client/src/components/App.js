@@ -5,6 +5,7 @@ import loadingImg from '../assets/loading.svg';
 import pkgImg from '../assets/package.svg';
 import heartImg from '../assets/heart.svg';
 import { getLucky } from '../lucky';
+import Contact from './Contact';
 
 function App() {
   const navigate = useNavigate();
@@ -16,9 +17,9 @@ function App() {
       <form>
         <div>
           <div className='home-title'>Where's My Package?</div>
-          <div className='desc'>"<em>An Arch Linux Package Aggregator For Official and Aur Packages</em> "</div>
+          <div className='desc'>"<em>An Arch Linux Package Aggregator For <span className='home-em-text'>Official</span> and <span className='home-em-text'>Aur</span> Packages</em> "</div>
           <div className='search'>
-            <img className='search-img' src={pkgImg} alt='a square package' />
+            <img className='search-img-home' src={pkgImg} alt='a square package' />
             <input type='text' placeholder={'Enter a package (i.e Systemd)'} value={pkgInput} onChange={(e)=>{setPkgInput(e.target.value)}} required/>
           </div>
           <div className='loading hidden'>
@@ -28,8 +29,12 @@ function App() {
             <button id='package-search' type='button' onClick={()=>{handleSearch(pkgInput,navigate,setMessage)}}>Package Search</button>
             <button id='lucky-search'type='button' onClick={()=>{handleLucky(navigate,setMessage)}}>I'm Feeling Lucky</button>
           </div>
-          <div className='credits'>Made with <img src={heartImg} /> by Anthony Infortunio</div>
+          <div className='credits'>
+            Made with <img src={heartImg} /> by Anthony Infortunio for the Arch Community
+          </div>
           <div className='source'>This page is open source! View the source code <a href='https://github.com/antinf/Wheres-My-Package'><em>here</em></a></div>
+          <p style={{textAlign: 'center'}}>Contact Me:</p>
+          <Contact />
         </div>
       </form>
     </div>

@@ -26,9 +26,11 @@ code {
   display: block;
 }
 :root {
-  --color-a: #2c7da0;
-  --color-b: #4fb3bf;
-  --color-c: #3d4e5b;
-  --color-d: #8f9aa9;
-  --color-e: #f2f2f2;
+  --color-a: #ffadad; /* pastel red */
+  --color-b: #ffd6a5; /* pastel orange */
+  --color-c: #fdffb6; /* pastel yellow */
+  --color-d: #caffbf; /* pastel green */
+  --color-e: #9bf6ff; /* pastel blue */
+  --color-f: #a0c4ff; /* pastel purple */
+  --color-g: #bdbdbd; /* pastel gray */
 }

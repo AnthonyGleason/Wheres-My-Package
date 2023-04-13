@@ -6,13 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import Package from './components/Package';
 import Results from './components/Results';
-import Nav from './components/Nav';
-import Contact from './components/Contact';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    {/* <Nav /> */}
     <Router>
       <Routes>
         {/* '/' route is the homepage which allows the user to search for packages */}
@@ -21,7 +18,6 @@ root.render(
         <Route path='/results/:pkgName' element={<Results />} />
         {/* '/package/:pkgName' shows the selected package (obtained from the route params) to the user */}
         <Route path='/package/:pkgName' element={<Package />} />
-        <Route path='/contact' element={<Contact />} />
       </Routes>
     </Router>
   </React.StrictMode>

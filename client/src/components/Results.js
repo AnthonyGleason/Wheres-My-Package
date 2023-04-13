@@ -3,6 +3,7 @@ import {useLocation, useNavigate, useResolvedPath, useRoutes} from 'react-router
 import {v4 as uuidGen} from 'uuid';
 import ResultsFooter from './ResultsFooter';
 import ResultsPackage from './ResultsPackage';
+import searchImg from '../assets/search.svg';
 import '../styles/Results.css'
 export default function Results(){
   const location = useLocation();
@@ -27,6 +28,7 @@ export default function Results(){
   const [pkgDescOrder,setPkgDescOrder] = useState('inorder');
   return(
     <div className='results'>
+      <img className='search-img' src={searchImg} alt='magnifying glass' onClick={()=>{window.location.href='/'}}/>
       <div>{searchRes.allResults.length} match(es) found for '{pkgName}'.</div>
       {/* column labels */}
       <div className='result'>

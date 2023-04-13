@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import '../styles/PackageSearch.css';
 import loadingImg from '../assets/loading.svg';
+import getLucky from '../scripts/lucky';
 export default function PackageSearch({allResults,setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay}){
   //search input states
   const [archInput,setArchInput] = useState('any');
@@ -42,15 +43,31 @@ export default function PackageSearch({allResults,setAllResults,setLastSearchTer
             }} 
           />
         </div>
-        <button type='button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay)}}>Search</button>
+        <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='search-button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay)}}>Search</button>
+        <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='lucky-button' onClick={()=>{handleLucky(setAllResults,setLastSearchTerm,setLoadingDisplay)}}>I'm Feeling Lucky</button>
         <img className='loading' style={{display: loadingDisplay}} src={loadingImg} alt='spinning circle indicating loading' />
       </form>
     </div>
   )
 }
-
+let getButtonColor = function(loadingDisplay){
+  if (loadingDisplay==='block'){
+    return 'grey';
+  }else{
+    return 'black';
+  }
+}
+let handleLucky = function(setAllResults,setLastSearchTerm,setLoadingDisplay){
+  let lucky = getLucky();
+  handleSearch('any','Any',lucky,setAllResults,setLastSearchTerm,setLoadingDisplay)
+}
 export let handleSearch = async function(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay){
   let searchResults = [];
+  // lock buttons
+  let searchButton = document.querySelector('.search-button');
+  let luckyButton = document.querySelector('.lucky-button');
+  searchButton.disabled = true;
+  luckyButton.disabled = true;
   try{
     setLoadingDisplay('block');
     //form validation
@@ -80,4 +97,7 @@ export let handleSearch = async function(archInput,repoInput,searchInput,setAllR
   if (searchResults===undefined) return 0;
   setAllResults(searchResults);
   setLoadingDisplay('none');
+  //unlock buttons
+  searchButton.disabled = false;
+  luckyButton.disabled = false;
 }

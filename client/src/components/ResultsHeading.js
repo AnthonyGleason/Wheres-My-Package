@@ -9,15 +9,16 @@ export default function ResultsHeading({currentPage,setCurrentPage,totalPages,al
       </ul>
     </div>
   )
-}
+};
+
 let handlePageChange = function(currentPage,setCurrentPage,modifier,totalPages){
-  let nextPage = 1;
+  let nextPage;
   if (modifier===-1){
     nextPage = currentPage-1;
   }else if (modifier===1){
     nextPage = currentPage+1;
   }else{
-    nextPage = currentPage;
+    nextPage = 1;
   }
   if (nextPage && nextPage<=totalPages){
     setCurrentPage(nextPage);

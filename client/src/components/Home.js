@@ -4,10 +4,10 @@ import Results from './Results';
 import '../styles/Home.css';
 export default function Home(){
   const [allResults,setAllResults] = useState([]);
-  const [lastSearchTerm,setLastSearchTerm] = useState('python');
+  const [lastSearchTerm,setLastSearchTerm] = useState('linux');
   const [loadingDisplay,setLoadingDisplay] = useState('none');
   useEffect(()=>{
-    handleSearch('any','any','python',setAllResults,setLastSearchTerm,setLoadingDisplay);
+    handleSearch('any','any','linux',setAllResults,setLastSearchTerm,setLoadingDisplay);
   },[]);
   return(
     <div className='home'>

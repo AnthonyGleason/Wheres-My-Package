@@ -15,16 +15,27 @@
 .search-field{
   display: flex;
   justify-content: space-between;
-  max-width: 700px;
+  max-width: 1200px;
 }
 .search-field button{
   align-self: center;
-  height: 40px;
-  width: 100px;
   font-weight: 700;
   border-radius: 5px;
   border: 1px solid black;
   margin: 15px;
+  padding: 15px;
+  min-width: max-content;
+}
+.search-terms{
+  width: 100%;
+  max-width: 500px;
+}
+.search-button{
+  min-width: max-content;
+}
+.search-repo select,
+.search-arch select{
+  width: 100%;
 }
 .search-repo,
 .search-arch,
@@ -34,5 +45,5 @@
   padding: 15px;
 }
 .loading{
-  max-width: 35px;
+  min-width: 35px;
 }

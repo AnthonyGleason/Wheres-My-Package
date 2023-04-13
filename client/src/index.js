@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import Package from './components/Package';
 import Results from './components/Results';
 import Nav from './components/Nav';
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <Nav /> */}
-    <BrowserRouter>
+    <Router>
       <Routes>
         {/* '/' route is the homepage which allows the user to search for packages */}
         <Route path='/' element={<App />} />
@@ -23,7 +23,7 @@ root.render(
         <Route path='/package/:pkgName' element={<Package />} />
         <Route path='/contact' element={<Contact />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>
 );
 

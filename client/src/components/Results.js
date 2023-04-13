@@ -3,9 +3,9 @@ import '../styles/Results.css';
 import Result from '../components/Result.js';
 import { v4 as uuidGen } from 'uuid';
 import ResultsHeading from './ResultsHeading';
-export default function Results({allResults,lastSearchTerm}){
+export default function Results({allResults,lastSearchTerm,currentPage,setCurrentPage}){
   const [resultsSnip,setResultsSnip] = useState([]);
-  const [currentPage,setCurrentPage] = useState(1);
+  
   const [totalPages,setTotalPages] = useState(1);
   const [resultsPerPage,setResultsPerPage] = useState(25);
   useEffect(()=>{

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../styles/PackageSearch.css';
 import loadingImg from '../assets/loading.svg';
 import getLucky from '../scripts/lucky';
-export default function PackageSearch({allResults,setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay}){
+export default function PackageSearch({allResults,setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay,setCurrentPage}){
   //search input states
   const [archInput,setArchInput] = useState('any');
   const [repoInput,setRepoInput] = useState('any');
@@ -44,7 +44,7 @@ export default function PackageSearch({allResults,setAllResults,setLastSearchTer
           />
         </div>
         <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='search-button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay)}}>Search</button>
-        <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='lucky-button' onClick={()=>{handleLucky(setAllResults,setLastSearchTerm,setLoadingDisplay)}}>I'm Feeling Lucky</button>
+        <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='lucky-button' onClick={()=>{handleLucky(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)}}>I'm Feeling Lucky</button>
         <img className='loading' style={{display: loadingDisplay}} src={loadingImg} alt='spinning circle indicating loading' />
       </form>
     </div>
@@ -57,11 +57,11 @@ let getButtonColor = function(loadingDisplay){
     return 'black';
   }
 }
-let handleLucky = function(setAllResults,setLastSearchTerm,setLoadingDisplay){
+let handleLucky = function(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
   let lucky = getLucky();
-  handleSearch('any','Any',lucky,setAllResults,setLastSearchTerm,setLoadingDisplay)
+  handleSearch('any','Any',lucky,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)
 }
-export let handleSearch = async function(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay){
+export let handleSearch = async function(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
   let searchResults = [];
   // lock buttons
   let searchButton = document.querySelector('.search-button');
@@ -83,6 +83,8 @@ export let handleSearch = async function(archInput,repoInput,searchInput,setAllR
     }
     //filter array by architecture
     searchResults = searchResults.filter((result)=>{
+      //if the any field is selected then return every item
+      if (archInput.toLowerCase()==='any') return true;
       return (result.arch===archInput);
     })
     //filter array by repository
@@ -100,4 +102,6 @@ export let handleSearch = async function(archInput,repoInput,searchInput,setAllR
   //unlock buttons
   searchButton.disabled = false;
   luckyButton.disabled = false;
+  //set current page to 1
+  setCurrentPage(1)
 }

@@ -81,7 +81,7 @@ let getPkgData = async function(pkgName,navigate,setMessage){
     //form validation
     if (!pkgName || pkgName==='') throw new Error('The package search input cannot be left blank.');
     //get data from sever
-    let response = await fetch(`http://localhost:5000/api/search/${pkgName}`,{
+    let response = await fetch(`https://wheresmypackage.herokuapp.com/api/search/${pkgName}`,{
       method : 'GET',
     });
     searchResults = (await response.json());

@@ -144,24 +144,26 @@
   background-color: #cacaca;
 }
 .aur {
-  background-color: #c7f1c7;
+  background-color: #A7D7C5;
 }
 .core {
-  background-color: #ffd580;
+  background-color: #FFA07A;
 }
 .community {
-  background-color: #c6d5e6;
+  background-color: #ADD8E6;
 }
 .extra {
-  background-color: #ffb3b3;
+  background-color: #CD5C5C;
 }
 .multilib {
-  background-color: #e6ccff;
+  background-color: #B19CD9;
 }
 .kde-unstable {
-  background-color: #f7c887;
+  background-color: #FFB6C1;
 }
-
+.other {
+  background-color: #D3D3D3;
+}
 
 .results{
   background-color: whitesmoke;

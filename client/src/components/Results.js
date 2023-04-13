@@ -4,6 +4,7 @@ import {v4 as uuidGen} from 'uuid';
 import ResultsFooter from './ResultsFooter';
 import ResultsPackage from './ResultsPackage';
 import searchImg from '../assets/search.svg';
+import sortImg from '../assets/sort.svg';
 import '../styles/Results.css'
 export default function Results(){
   const location = useLocation();

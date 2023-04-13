@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Wheres-My-Package/static/css/main.402d1f10.css",
-    "main.js": "/Wheres-My-Package/static/js/main.a6c6b507.js",
+    "main.css": "/Wheres-My-Package/static/css/main.e94eaa80.css",
+    "main.js": "/Wheres-My-Package/static/js/main.3cd65446.js",
     "static/js/787.c4e7f8f9.chunk.js": "/Wheres-My-Package/static/js/787.c4e7f8f9.chunk.js",
     "index.html": "/Wheres-My-Package/index.html",
     "static/media/github.svg": "/Wheres-My-Package/static/media/github.0fe72871d19a3bf699bc9afe6542d138.svg",
@@ -12,12 +12,12 @@
     "static/media/loading.svg": "/Wheres-My-Package/static/media/loading.742ce6df7897dc52e9aef1bc8fe6910b.svg",
     "static/media/heart.svg": "/Wheres-My-Package/static/media/heart.915122281e7163847c35a3ff3868a034.svg",
     "static/media/sort.svg": "/Wheres-My-Package/static/media/sort.57ea26a45a60c2b27b1177bb3adcd398.svg",
-    "main.402d1f10.css.map": "/Wheres-My-Package/static/css/main.402d1f10.css.map",
-    "main.a6c6b507.js.map": "/Wheres-My-Package/static/js/main.a6c6b507.js.map",
+    "main.e94eaa80.css.map": "/Wheres-My-Package/static/css/main.e94eaa80.css.map",
+    "main.3cd65446.js.map": "/Wheres-My-Package/static/js/main.3cd65446.js.map",
     "787.c4e7f8f9.chunk.js.map": "/Wheres-My-Package/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.402d1f10.css",
-    "static/js/main.a6c6b507.js"
+    "static/css/main.e94eaa80.css",
+    "static/js/main.3cd65446.js"
   ]
 }

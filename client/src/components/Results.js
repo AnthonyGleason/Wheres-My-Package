@@ -14,7 +14,7 @@ export default function Results({allResults,lastSearchTerm}){
   return(
     <div className='results'>
       <div className='results-nav'>
-        <div className='results-nav-title'>{allResults.length} matching packages found for {lastSearchTerm}. Page {currentPage} of {totalPages}</div>
+        <div className='results-nav-title'>{allResults.length} matching packages found for "{lastSearchTerm}". Page {currentPage} of {totalPages}</div>
         <ul className='results-nav-buttons'>
           <li><button onClick={()=>{handlePageChange(currentPage,setCurrentPage,-1,totalPages)}}>{'< Prev'}</button></li>
           <li><button onClick={()=>{handlePageChange(currentPage,setCurrentPage,1,totalPages)}}>{'Next >'}</button></li>
@@ -31,8 +31,12 @@ export default function Results({allResults,lastSearchTerm}){
           <div className='pkg-flag-date'>Flag Date</div>
         </div>
         {resultsSnip.map((result)=>{
+          let tempClass='result';
+          if (resultsSnip.indexOf(result)%2===1){
+            tempClass=tempClass+' results-alt-item';
+          }
           return(
-            <Result key={uuidGen()} arch={result.arch} repo={result.repo} name={result.pkgname} version={result.pkgver} description={result.pkgdesc} lastUpdated={result.last_update} flagDate={result.flag_date} />
+            <Result tempClass={tempClass} key={uuidGen()} arch={result.arch} repo={result.repo} name={result.pkgname} version={result.pkgver} description={result.pkgdesc} lastUpdated={result.last_update} flagDate={result.flag_date} />
           )
         })}
       </div>

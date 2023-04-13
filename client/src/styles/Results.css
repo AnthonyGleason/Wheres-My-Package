@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  border: 1px solid #bcd;
 }
 .results-nav{
   display: flex;
@@ -22,7 +23,24 @@
   flex-grow: 1;
 }
 .result{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}
+.result:hover{
+  cursor: pointer;
+  background-color: rgb(255, 237, 214);
+}
+.result *{
+  font-size: 13px;
+  margin: 2px;
+  height: max-content;
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+}
+.results-alt-item{
+  background-color: var(--results-alt-bg-color);
 }

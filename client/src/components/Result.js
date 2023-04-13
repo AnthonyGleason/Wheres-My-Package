@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Result({arch,repo,name,version,description,lastUpdated,flagDate}){
+export default function Result({tempClass,arch,repo,name,version,description,lastUpdated,flagDate}){
   return(
-    <div className='result'>
+    <div className={tempClass}>
       <div className='pkg-arch'>{arch}</div>
       <div className='pkg-repo'>{repo}</div>
       <div className='pkg-name'>{name}</div>

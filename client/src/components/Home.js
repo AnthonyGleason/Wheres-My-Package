@@ -9,7 +9,7 @@ export default function Home(){
   const [loadingDisplay,setLoadingDisplay] = useState('none');
   const [currentPage,setCurrentPage] = useState(1);
   useEffect(()=>{
-    handleSearch('any','any',getLucky(),setAllResults,setLastSearchTerm,setLoadingDisplay);
+    handleSearch('any','any',getLucky(),setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage);
   },[]);
   return(
     <div className='home'>

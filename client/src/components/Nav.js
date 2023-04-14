@@ -4,9 +4,9 @@ import '../styles/Nav.css';
 export default function Nav(){
   return(
     <div className='nav'>
-      <img src={archLogo} className='pointer' onClick={()=>{window.location.href='/'}} />
+      <img src={archLogo} className='pointer' onClick={()=>{window.location.href='/Wheres-My-Package'}} />
       <ul className='nav-buttons'>
-        <li className='pointer' onClick={()=>{window.location.href='/'}}>Packages</li>
+        <li className='pointer' onClick={()=>{window.location.href='/Wheres-My-Package'}}>Packages</li>
       </ul>
     </div>
   )

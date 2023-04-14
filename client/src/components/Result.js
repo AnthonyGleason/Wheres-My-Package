@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Result({tempClass,arch,repo,name,version,description,lastUpdated,flagDate}){
+export default function Result({tempClass,arch,repo,name,version,description,lastUpdated,flagDate,allResults}){
+  const navigate = useNavigate();
   return(
-    <div className={tempClass}>
+    <div onClick={()=>{handleClick(name,navigate,allResults)}} className={tempClass}>
       <div className='pkg-arch'>{arch}</div>
       <div className='pkg-repo'>{repo}</div>
       <div className='pkg-name'>{name}</div>
@@ -12,4 +14,8 @@ export default function Result({tempClass,arch,repo,name,version,description,las
       <div className='pkg-flag-date'>{flagDate}</div>
     </div>
   )
+}
+
+let handleClick = function(name,navigate,allResults){
+  navigate(`/package/${name}`,{state: {allResults}});
 }

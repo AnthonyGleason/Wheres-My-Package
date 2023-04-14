@@ -31,7 +31,18 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
             tempClass=tempClass+' results-alt-item';
           }
           return(
-            <Result tempClass={tempClass} key={uuidGen()} arch={result.arch} repo={result.repo} name={result.pkgname} version={result.pkgver} description={result.pkgdesc} lastUpdated={result.last_update} flagDate={result.flag_date} />
+            <Result 
+            tempClass={tempClass} 
+            key={uuidGen()} 
+            arch={result.arch} 
+            repo={result.repo} 
+            name={result.pkgname} 
+            version={result.pkgver} 
+            description={result.pkgdesc} 
+            lastUpdated={result.last_update} 
+            flagDate={result.flag_date} 
+            allResults={allResults}
+            />
           )
         })}
       </div>

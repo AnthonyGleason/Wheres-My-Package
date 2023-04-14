@@ -9,12 +9,54 @@ export default function Package(){
   const location = useLocation();
   let allResults = location.state.allResults;
   useEffect(()=>{
+    console.log(currentPackage);
     setCurrentPackage(getCurrentPackage(pkgname,allResults));
   },[]);
   if (!currentPackage){
     return(<></>);
   }else if (currentPackage.repo.toLowerCase()==='aur'){
-    return(<></>);
+    return(
+      <div className='package'>
+        <div className='package-title'>{currentPackage.pkgname}</div>
+        <ul className='package-content'>
+          <li>
+            <span>Attention, this is an Aur package submitted by the arch community. Its contents have not been verified.</span>
+          </li>
+          <li>
+            <span>Architecture:</span>
+            <span>{currentPackage.arch}</span>
+          </li>
+          <li>
+            <span>Repository:</span>
+            <span>{currentPackage.repo}</span>
+          </li>
+          <li>
+            <span>Description:</span>
+            <span>{currentPackage.pkgdesc}</span>
+          </li>
+          <li>
+            <span>Upstream Url:</span>
+            <a href={currentPackage.url}>{currentPackage.url}</a>
+          </li>
+          <li>
+            <span>Archlinux.org Url:</span>
+            <a href={currentPackage.archUrl}>{currentPackage.archUrl}</a>
+          </li>
+          <li>
+            <span>Last Updated:</span>
+            <span>{currentPackage.last_update}</span>
+          </li>
+          <li>
+            <span>Flag Date:</span>
+            <span>{currentPackage.flag_date}</span>
+          </li>
+          <li>
+            <span>Votes:</span>
+            <span>{currentPackage.votes}</span>
+          </li>
+        </ul>
+      </div>
+    )
   }else{
     return(
       <div className='package'>

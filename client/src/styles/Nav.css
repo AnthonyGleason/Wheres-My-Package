@@ -3,9 +3,13 @@
   border-bottom: 5px solid var(--nav-border-color);
   display: flex;
   justify-content: space-between;
-  padding: 10px;
   position: sticky;
   top: 0;
+  padding: 10px;
+}
+.arch-logo{
+  width: auto;
+  padding: 5px;
 }
 .nav-buttons{
   display: flex;

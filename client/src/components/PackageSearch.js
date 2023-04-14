@@ -43,7 +43,7 @@ export default function PackageSearch({allResults,setAllResults,setLastSearchTer
             }} 
           />
         </div>
-        <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='search-button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay)}}>Search</button>
+        <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='search-button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)}}>Search</button>
         <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='lucky-button' onClick={()=>{handleLucky(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)}}>I'm Feeling Lucky</button>
         <img className='loading' style={{display: loadingDisplay}} src={loadingImg} alt='spinning circle indicating loading' />
       </form>
@@ -93,8 +93,10 @@ export let handleSearch = async function(archInput,repoInput,searchInput,setAllR
       if (repoInput.toLowerCase()==='any') return true;
       return (result.repo===repoInput.toLowerCase());
     })
+    setCurrentPage(1)
   }catch(e){
     console.log(`${e} when getting package data`);
+    setCurrentPage(0);
   }
   if (searchResults===undefined) return 0;
   setAllResults(searchResults);
@@ -102,6 +104,4 @@ export let handleSearch = async function(archInput,repoInput,searchInput,setAllR
   //unlock buttons
   searchButton.disabled = false;
   luckyButton.disabled = false;
-  //set current page to 1
-  setCurrentPage(1)
 }

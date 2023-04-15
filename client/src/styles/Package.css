@@ -1,7 +1,18 @@
 .package{
   background-color: var(--content-bg-color);
   border: 1px solid #bcd;
-  margin: 20px 3% 20px 3%;
+}
+@media only screen and (min-width:809px) {
+  .package{
+    margin: 20px 3% 20px 3%;
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width:808px) {
+  .package{
+    margin: 10px 1.5% 10px 1.5%;
+    font-size: 13px;
+  } 
 }
 .package-title{
   font-weight: 700;

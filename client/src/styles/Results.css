@@ -11,29 +11,61 @@
   justify-content: space-between;
   padding: 20px;
 }
+.results-nav-title{
+  margin: 5px;
+}
+@media only screen and (min-width: 809px) {
+  .results-nav-title{
+    font-size: 15px;
+  }
+  .result,
+  .result-labels{
+    font-size: 15px;
+    display: grid;
+  }
+}
+@media only screen and (min-width: 515px) and (max-width: 808px) {
+  .results-nav-title{
+    font-size: 13px;
+  }
+  .result,
+  .result-labels{
+    font-size: 10px;
+    display: grid;
+  }
+}
+@media only screen and (max-width: 514px){
+  .result,
+  .result-labels{
+    display: flex;
+    flex-direction: column;
+    font-size: 10;
+  }
+}
 .results-nav-buttons{
   list-style: none;
   display: flex;
   gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 .results-nav-buttons button{
-  padding: 8px;
+  padding: 5px;
+  font-size: 12px;
 }
 .results-content{
   flex-grow: 1;
 }
 .result,
 .result-labels{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   text-align: center;
-  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .result-labels{
   border-bottom: 1px solid #888;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 .result:hover{
   cursor: pointer;
@@ -41,11 +73,12 @@
 }
 .result *,
 .result-labels *{
-  font-size: 13px;
   height: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .results-alt-item{
   background-color: var(--results-alt-bg-color);

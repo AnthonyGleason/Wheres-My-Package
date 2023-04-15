@@ -43,3 +43,7 @@
 .package-content li span:first-child{
   font-weight: 700;
 }
+.arch-url{
+  white-space: normal;
+  text-overflow: ellipsis;
+}

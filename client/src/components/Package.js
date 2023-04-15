@@ -36,11 +36,11 @@ export default function Package(){
           </li>
           <li>
             <span>Upstream Url:</span>
-            <a href={currentPackage.url}>{currentPackage.url}</a>
+            <a className='arch-url' href={currentPackage.url}>{currentPackage.url}</a>
           </li>
           <li>
             <span>Archlinux.org Url:</span>
-            <a href={currentPackage.archUrl}>{currentPackage.archUrl}</a>
+            <a className='arch-url' href={currentPackage.archUrl}>{currentPackage.archUrl}</a>
           </li>
           <li>
             <span>Last Updated:</span>
@@ -84,11 +84,11 @@ export default function Package(){
           </li>
           <li>
             <span>Upstream Url:</span>
-            <a href={currentPackage.url}>{currentPackage.url}</a>
+            <a className='arch-url' href={currentPackage.url}>{currentPackage.url}</a>
           </li>
           <li>
             <span>Archlinux.org Url:</span>
-            <a href={currentPackage.archUrl}>{currentPackage.archUrl}</a>
+            <a className='arch-url' href={currentPackage.archUrl}>{currentPackage.archUrl}</a>
           </li>
           <li>
             <span>Licenses:</span>

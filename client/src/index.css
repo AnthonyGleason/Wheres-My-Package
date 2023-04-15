@@ -28,3 +28,9 @@ button{
 .pointer{
   cursor: pointer;
 }
+input,
+option,
+select,
+button{
+  color: black;
+}

@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 export default function Result({tempClass,arch,repo,name,version,description,lastUpdated,flagDate,allResults}){
   const navigate = useNavigate();
   return(
-    <div onClick={()=>{handleClick(name,navigate,allResults)}} className={tempClass}>
-      <div className='pkg-arch'>{arch}</div>
-      <div className='pkg-repo'>{repo}</div>
-      <div className='pkg-name'>{name}</div>
-      <div className='pkg-version'>{version}</div>
-      <div className='pkg-description'>{description}</div>
-      <div className='pkg-last-updated'>{lastUpdated}</div>
-      <div className='pkg-flag-date'>{flagDate}</div>
-    </div>
+    <section onClick={()=>{handleClick(name,navigate,allResults)}} className={tempClass}>
+      <p className='pkg-arch'>{arch}</p>
+      <p className='pkg-repo'>{repo}</p>
+      <p className='pkg-name'>{name}</p>
+      <p className='pkg-version'>{version}</p>
+      <p className='pkg-description'>{description}</p>
+      <p className='pkg-last-updated'>{lastUpdated}</p>
+      <p className='pkg-flag-date'>{flagDate}</p>
+    </section>
   )
 }
 

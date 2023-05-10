@@ -13,17 +13,17 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
     setResultsSnip(allResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage));
   },[allResults,currentPage,resultsPerPage])
   return(
-    <div className='results'>
+    <section className='results'>
       <ResultsHeading currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} allResults={allResults} lastSearchTerm={lastSearchTerm} />
-      <div className='results-content'>
+      <main className='results-content'>
         <div className='result-labels'>
-          <div className='pkg-arch'>CPU Architecture</div>
-          <div className='pkg-repo'>Repository</div>
-          <div className='pkg-name'>Package Name</div>
-          <div className='pkg-version'>Package Version</div>
-          <div className='pkg-description'>Package Description</div>
-          <div className='pkg-last-updated'>Last Updated Date</div>
-          <div className='pkg-flag-date'>Flag Date</div>
+          <h5 className='pkg-arch'>CPU Architecture</h5>
+          <h5 className='pkg-repo'>Repository</h5>
+          <h5 className='pkg-name'>Package Name</h5>
+          <h5 className='pkg-version'>Package Version</h5>
+          <h5 className='pkg-description'>Package Description</h5>
+          <h5 className='pkg-last-updated'>Last Updated Date</h5>
+          <h5 className='pkg-flag-date'>Flag Date</h5>
         </div>
         {resultsSnip.map((result)=>{
           let tempClass='result';
@@ -45,8 +45,8 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
             />
           )
         })}
-      </div>
+      </main>
       <ResultsHeading currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} allResults={allResults} lastSearchTerm={lastSearchTerm} />
-    </div>
+    </section>
   )
 }

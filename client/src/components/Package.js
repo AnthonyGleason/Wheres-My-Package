@@ -9,53 +9,52 @@ export default function Package(){
   const location = useLocation();
   let allResults = location.state.allResults;
   useEffect(()=>{
-    console.log(currentPackage);
     setCurrentPackage(getCurrentPackage(pkgname,allResults));
   },[]);
   if (!currentPackage){
     return(<></>);
   }else if (currentPackage.repo.toLowerCase()==='aur'){
     return(
-      <div className='package'>
-        <div className='package-title'>{currentPackage.pkgname}</div>
+      <section className='package'>
+        <h2 className='package-title'>{currentPackage.pkgname}</h2>
         <ul className='package-content'>
           <li>
-            <span>Attention, this is an Aur package submitted by the arch community. Its contents have not been verified.</span>
+            <p>Attention, this is an Aur package submitted by the arch community. Its contents have not been verified.</p>
           </li>
           <li>
-            <span>Architecture:</span>
-            <span>{currentPackage.arch}</span>
+            <p>Architecture:</p>
+            <p>{currentPackage.arch}</p>
           </li>
           <li>
-            <span>Repository:</span>
-            <span>{currentPackage.repo}</span>
+            <p>Repository:</p>
+            <p>{currentPackage.repo}</p>
           </li>
           <li>
-            <span>Description:</span>
-            <span>{currentPackage.pkgdesc}</span>
+            <p>Description:</p>
+            <p>{currentPackage.pkgdesc}</p>
           </li>
           <li>
-            <span>Upstream Url:</span>
+            <p>Upstream Url:</p>
             <a className='arch-url' href={currentPackage.url}>{currentPackage.url}</a>
           </li>
           <li>
-            <span>Archlinux.org Url:</span>
+            <p>Archlinux.org Url:</p>
             <a className='arch-url' href={currentPackage.archUrl}>{currentPackage.archUrl}</a>
           </li>
           <li>
-            <span>Last Updated:</span>
-            <span>{currentPackage.last_update}</span>
+            <p>Last Updated:</p>
+            <p>{currentPackage.last_update}</p>
           </li>
           <li>
-            <span>Flag Date:</span>
-            <span>{currentPackage.flag_date}</span>
+            <p>Flag Date:</p>
+            <p>{currentPackage.flag_date}</p>
           </li>
           <li>
-            <span>Votes:</span>
-            <span>{currentPackage.votes}</span>
+            <p>Votes:</p>
+            <p>{currentPackage.votes}</p>
           </li>
         </ul>
-      </div>
+      </section>
     )
   }else{
     return(
@@ -63,55 +62,55 @@ export default function Package(){
         <div className='package-title'>{currentPackage.pkgname}</div>
         <ul className='package-content'>
           <li>
-            <span>Architecture:</span>
-            <span>{currentPackage.arch}</span>
+            <h4>Architecture:</h4>
+            <p>{currentPackage.arch}</p>
           </li>
           <li>
-            <span>Repository:</span>
-            <span>{currentPackage.repo}</span>
+            <h4>Repository:</h4>
+            <p>{currentPackage.repo}</p>
           </li>
           <li>
-            <span>Description:</span>
-            <span>{currentPackage.pkgdesc}</span>
+            <h4>Description:</h4>
+            <p>{currentPackage.pkgdesc}</p>
           </li>
           <li>
-            <span>Package Size:</span>
-            <span>{currentPackage.compressed_size}</span>
+            <h4>Package Size:</h4>
+            <p>{currentPackage.compressed_size}</p>
           </li>
           <li>
-            <span>Installed Size:</span>
-            <span>{currentPackage.installed_size}</span>
+            <h4>Installed Size:</h4>
+            <p>{currentPackage.installed_size}</p>
           </li>
           <li>
-            <span>Upstream Url:</span>
+            <h4>Upstream Url:</h4>
             <a className='arch-url' href={currentPackage.url}>{currentPackage.url}</a>
           </li>
           <li>
-            <span>Archlinux.org Url:</span>
+            <h4>Archlinux.org Url:</h4>
             <a className='arch-url' href={currentPackage.archUrl}>{currentPackage.archUrl}</a>
           </li>
           <li>
-            <span>Licenses:</span>
-            <span>{currentPackage.licenses}</span>
+            <h4>Licenses:</h4>
+            <p>{currentPackage.licenses}</p>
           </li>
           <li>
-            <span>Maintainers:</span>
-            <span>{currentPackage.maintainers}</span>
+            <h4>Maintainers:</h4>
+            <p>{currentPackage.maintainers}</p>
           </li>
           <li>
-            <span>Last Packager:</span>
-            <span>{currentPackage.packager}</span>
+            <h4>Last Packager:</h4>
+            <p>{currentPackage.packager}</p>
           </li>
           <li>
-            <span>Last Updated:</span>
-            <span>{currentPackage.last_update}</span>
+            <h4>Last Updated:</h4>
+            <p>{currentPackage.last_update}</p>
           </li>
           <li>
-            <span>Flag Date:</span>
-            <span>{currentPackage.flag_date}</span>
+            <h4>Flag Date:</h4>
+            <p>{currentPackage.flag_date}</p>
           </li>
         </ul>
-        <div className='dependencies-container'>
+        <section className='dependencies-container'>
           <ul className='depends'>
             <li>Dependencies:</li>
             {
@@ -128,7 +127,7 @@ export default function Package(){
               })
             }
           </ul>
-        </div>
+        </section>
       </div>
     )
   }

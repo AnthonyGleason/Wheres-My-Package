@@ -1,13 +1,13 @@
 import React from 'react';
 export default function ResultsHeading({currentPage,setCurrentPage,totalPages,allResults,lastSearchTerm}){
   return(
-    <div className='results-nav'>
-      <div className='results-nav-title'>{allResults.length} matching packages found for "{lastSearchTerm}". Page {currentPage} of {totalPages}</div>
+    <nav className='results-nav'>
+      <h5 className='results-nav-title'>{allResults.length} matching packages found for "{lastSearchTerm}". Page {currentPage} of {totalPages}</h5>
       <ul className='results-nav-buttons'>
         <li><button onClick={()=>{handlePageChange(currentPage,setCurrentPage,-1,totalPages)}}>{'< Prev'}</button></li>
         <li><button onClick={()=>{handlePageChange(currentPage,setCurrentPage,1,totalPages)}}>{'Next >'}</button></li>
       </ul>
-    </div>
+    </nav>
   )
 };
 

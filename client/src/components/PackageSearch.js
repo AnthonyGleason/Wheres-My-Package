@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import '../styles/PackageSearch.css';
 import loadingImg from '../assets/loading.svg';
 import getLucky from '../scripts/lucky';
-export default function PackageSearch({allResults,setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay,setCurrentPage}){
+export default function PackageSearch({setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay,setCurrentPage}){
   //search input states
   const [archInput,setArchInput] = useState('any');
   const [repoInput,setRepoInput] = useState('any');
   const [searchInput,setSearchInput] = useState('');
   return(
-    <div className='package-search'>
-      <div className='search-title'>Package Search</div>
+    <section className='package-search'>
+      <h3 className='search-title'>Package Search</h3>
       <form className='search-field'>
         <div className='search-arch'>
           <label>Architecture</label>
@@ -47,7 +47,7 @@ export default function PackageSearch({allResults,setAllResults,setLastSearchTer
         <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='lucky-button' onClick={()=>{handleLucky(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)}}>I'm Feeling Lucky</button>
         <img className='loading' style={{display: loadingDisplay}} src={loadingImg} alt='spinning circle indicating loading' />
       </form>
-    </div>
+    </section>
   )
 }
 let getButtonColor = function(loadingDisplay){

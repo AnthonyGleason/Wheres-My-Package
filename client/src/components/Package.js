@@ -7,9 +7,15 @@ export default function Package(){
   const pkgname = useParams().pkgname;
   const [currentPackage,setCurrentPackage] = useState();
   const location = useLocation();
-  let allResults = location.state.allResults;
+  const allResults = location.state.allResults;
+  const getCurrentPackage = function(){
+    for (let i=0; i<allResults.length;i++){
+      if (allResults[i].pkgname===pkgname) return allResults[i];
+    };
+  };
+
   useEffect(()=>{
-    setCurrentPackage(getCurrentPackage(pkgname,allResults));
+    setCurrentPackage(getCurrentPackage());
   },[]);
   if (!currentPackage){
     return(<></>);
@@ -131,12 +137,4 @@ export default function Package(){
       </div>
     )
   }
-};
-
-let getCurrentPackage = function(pkgname,allResults){
-  let temppkg;
-  allResults.forEach((result)=>{
-    if (result.pkgname===pkgname) temppkg=result;
-  })
-  return temppkg;
 };

@@ -9,8 +9,20 @@ export default function Home(){
   const [currentPage,setCurrentPage] = useState(0);
   return(
     <main className='home'>
-      <PackageSearch allResults={allResults} setAllResults={setAllResults} setLastSearchTerm={setLastSearchTerm} loadingDisplay={loadingDisplay} setLoadingDisplay={setLoadingDisplay} setCurrentPage={setCurrentPage}/>
-      <Results allResults={allResults} lastSearchTerm={lastSearchTerm} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+      <PackageSearch 
+      allResults={allResults} 
+      setAllResults={setAllResults} 
+      setLastSearchTerm={setLastSearchTerm} 
+      loadingDisplay={loadingDisplay} 
+      setLoadingDisplay={setLoadingDisplay} 
+      setCurrentPage={setCurrentPage}
+      />
+      <Results 
+      allResults={allResults} 
+      lastSearchTerm={lastSearchTerm} 
+      currentPage={currentPage} 
+      setCurrentPage={setCurrentPage}
+      />
     </main>
   )
 }

@@ -4,17 +4,23 @@ import Result from '../components/Result.js';
 import { v4 as uuidGen } from 'uuid';
 import ResultsHeading from './ResultsHeading';
 export default function Results({allResults,lastSearchTerm,currentPage,setCurrentPage}){
+  //Results snip refers to the current selection of results. for example page 5 will have a resultsSnip of the data for results #125-#150.
   const [resultsSnip,setResultsSnip] = useState([]);
-  
   const [totalPages,setTotalPages] = useState(1);
-  const [resultsPerPage,setResultsPerPage] = useState(25);
+  const resultsPerPage = 25;
   useEffect(()=>{
     setTotalPages(Math.ceil(allResults.length/resultsPerPage));
     setResultsSnip(allResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage));
   },[allResults,currentPage,resultsPerPage])
   return(
     <section className='results'>
-      <ResultsHeading currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} allResults={allResults} lastSearchTerm={lastSearchTerm} />
+      <ResultsHeading
+      currentPage={currentPage} 
+      setCurrentPage={setCurrentPage} 
+      totalPages={totalPages} 
+      allResults={allResults} 
+      lastSearchTerm={lastSearchTerm} 
+      />
       <main className='results-content'>
         <div className='result-labels'>
           <h5 className='pkg-arch'>CPU Architecture</h5>
@@ -26,9 +32,12 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
           <h5 className='pkg-flag-date'>Flag Date</h5>
         </div>
         {resultsSnip.map((result)=>{
-          let tempClass='result';
+          let tempClass='';
+          //alternate background colors by adding results-alt-item class to every other item
           if (resultsSnip.indexOf(result)%2===1){
-            tempClass=tempClass+' results-alt-item';
+            tempClass='result results-alt-item';
+          }else{
+            tempClass='result'
           }
           return(
             <Result 
@@ -46,7 +55,13 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
           )
         })}
       </main>
-      <ResultsHeading currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} allResults={allResults} lastSearchTerm={lastSearchTerm} />
+      <ResultsHeading
+      currentPage={currentPage} 
+      setCurrentPage={setCurrentPage} 
+      totalPages={totalPages} 
+      allResults={allResults} 
+      lastSearchTerm={lastSearchTerm} 
+      />
     </section>
   )
 }

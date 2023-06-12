@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../styles/PackageSearch.css';
 import loadingImg from '../assets/loading.svg';
-import getLucky from '../scripts/lucky';
+import getLuckyTerm from '../scripts/lucky';
 export default function PackageSearch({setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay,setCurrentPage}){
   //search input states
   const [archInput,setArchInput] = useState('any');
@@ -44,24 +44,25 @@ export default function PackageSearch({setAllResults,setLastSearchTerm,loadingDi
           />
         </div>
         <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='search-button' onClick={()=>{handleSearch(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)}}>Search</button>
-        <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='lucky-button' onClick={()=>{handleLucky(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)}}>I'm Feeling Lucky</button>
+        <button type='button' style={{color: getButtonColor(loadingDisplay)}} className='lucky-button' onClick={()=>{handleLuckySearch(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)}}>I'm Feeling Lucky</button>
         <img className='loading' style={{display: loadingDisplay}} src={loadingImg} alt='spinning circle indicating loading' />
       </form>
     </section>
   )
 }
-let getButtonColor = function(loadingDisplay){
+const getButtonColor = function(loadingDisplay){
   if (loadingDisplay==='block'){
     return 'grey';
   }else{
     return 'black';
   }
 }
-let handleLucky = function(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
-  let lucky = getLucky();
+
+const handleLuckySearch = function(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
+  let lucky = getLuckyTerm();
   handleSearch('any','Any',lucky,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)
 }
-export let handleSearch = async function(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
+export const handleSearch = async function(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
   let searchResults = [];
   // lock buttons
   let searchButton = document.querySelector('.search-button');

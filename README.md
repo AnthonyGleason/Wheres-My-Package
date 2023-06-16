@@ -1,6 +1,6 @@
 # Wheres-My-Package
 
-Where's My Package is a web application designed to help Arch Linux users search for packages on both regular and AUR repositories. With its user-friendly interface, Where's My Package makes it easy for users to find the packages they're looking for. The application seamlessly combines data from both the regular Arch package search API and the AUR package search API, providing comprehensive results for package searches. The layout is responsive across the entire web application and will automatically change between mobile, tablet and desktop modes depending on the users device.
+Where's My Package is a web application designed to help Arch Linux users search for software packages on both regular and AUR repositories. With its user-friendly interface, Where's My Package makes it easy for users to find the software they're looking for. The application seamlessly aggregates package data from both the Arch Linux package search API and the AUR package search API, providing comprehensive search results.
 
 Tech stack: I am using React.js, HTML, CSS and Javascript on the front-end. For the back-end I am using Node.js with Express hosted on Heroku.
 

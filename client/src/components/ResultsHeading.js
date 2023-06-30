@@ -19,8 +19,8 @@ export default function ResultsHeading({currentPage,setCurrentPage,totalPages,al
     <nav className='results-nav'>
       <h5 className='results-nav-title'>{allResults.length} matching packages found for "{lastSearchTerm}". Page {currentPage} of {totalPages}</h5>
       <ul className='results-nav-buttons'>
-        <li><button onClick={()=>{handlePageChange(-1)}}>{'< Prev'}</button></li>
-        <li><button onClick={()=>{handlePageChange(1)}}>{'Next >'}</button></li>
+        <li><button onClick={()=>{handlePageChange(-1)}}>{'Prev'}</button></li>
+        <li><button onClick={()=>{handlePageChange(1)}}>{'Next'}</button></li>
       </ul>
     </nav>
   )

@@ -48,10 +48,14 @@
   gap: 10px;
   justify-content: center;
   align-items: center;
+  padding: 5px;
 }
 .results-nav-buttons button{
   padding: 5px;
   font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-weight: 700;
 }
 .results-content{
   flex-grow: 1;

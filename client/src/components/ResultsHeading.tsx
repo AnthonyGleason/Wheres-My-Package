@@ -1,4 +1,3 @@
-import React from 'react';
 export default function ResultsHeading({currentPage,setCurrentPage,totalPages,allResults,lastSearchTerm}){
   const handlePageChange = function(modifier){
     let nextPage;

@@ -1,11 +1,11 @@
-import React,{useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useParams,useLocation} from 'react-router-dom'
 import { v4 as uuidGen } from 'uuid';
 import '../styles/Package.css';
 
 export default function Package(){
   const pkgname = useParams().pkgname;
-  const [currentPackage,setCurrentPackage] = useState();
+  const [currentPackage,setCurrentPackage]:any = useState();
   const location = useLocation();
   const allResults = location.state.allResults;
   const getCurrentPackage = function(){

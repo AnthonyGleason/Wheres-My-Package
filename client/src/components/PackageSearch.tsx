@@ -1,13 +1,10 @@
-
-import React, {useState} from 'react';
+import {useState} from 'react';
 import '../styles/PackageSearch.css';
-import loadingImg from '../assets/loading.svg';
-import getLuckyTerm from '../scripts/lucky';
-
+import getLuckyTerm from '../lib/lucky';
+const loadingImg = require('../assets/loading.svg') as string;
 
 //TOGGLE BETWEEN LOCAL HOST AND SERVER
-const USE_LOCALHOST = true;
-
+const USE_LOCALHOST = false;
 
 export default function PackageSearch({setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay,setCurrentPage}){
   //search input states
@@ -78,8 +75,8 @@ const getServerUrl = function(searchInput){
 export const handleSearch = async function(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
   let searchResults = [];
   // lock buttons
-  let searchButton = document.querySelector('.search-button');
-  let luckyButton = document.querySelector('.lucky-button');
+  let searchButton:any = document.querySelector('.search-button');
+  let luckyButton:any = document.querySelector('.lucky-button');
   searchButton.disabled = true;
   luckyButton.disabled = true;
   try{

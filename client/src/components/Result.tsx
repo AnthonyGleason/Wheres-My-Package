@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Result({tempClass,arch,repo,name,version,description,lastUpdated,flagDate,allResults}){

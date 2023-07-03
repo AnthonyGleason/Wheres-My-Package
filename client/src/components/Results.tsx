@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from 'react';
+import {useState,useEffect} from 'react';
 import '../styles/Results.css';
-import Result from '../components/Result.js';
+import Result from './Result';
 import { v4 as uuidGen } from 'uuid';
 import ResultsHeading from './ResultsHeading';
 export default function Results({allResults,lastSearchTerm,currentPage,setCurrentPage}){

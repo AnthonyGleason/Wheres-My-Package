@@ -1,10 +1,9 @@
-import React from 'react';
 import '../styles/Footer.css';
 //import images
-import linkedinLogo from '../assets/linkedin.svg';
-import mailLogo from '../assets/mail.svg';
-import githubLogo from '../assets/github.svg';
-import heartImg from '../assets/heart.svg';
+const linkedinLogo = require('../assets/linkedin.svg') as string;
+const mailLogo = require('../assets/mail.svg') as string;
+const githubLogo = require('../assets/github.svg') as string;
+const heartImg = require('../assets/heart.svg') as string;
 export default function Footer(){
   return(
     <footer className='footer'>

@@ -1,20 +1,15 @@
 import createError from 'http-errors';
 import express from 'express';
+const app:any = express();
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { Request, Response, NextFunction } from 'express';
+//setup cors
+import cors from 'cors';
+app.use(cors());
 //routers
 import { apiRouter } from './routes/api';
-
-const app:any = express();
-const PORT = 5000;
-app.listen(PORT,()=>{
-  console.log(`Server is listening on port ${PORT}`);
-});
-const cors = require('cors');
-app.use(cors());
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,4 +33,9 @@ app.use(function(err:any, req:Request, res:Response, next:NextFunction) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+// start the server
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
 });

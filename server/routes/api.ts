@@ -14,8 +14,7 @@ apiRouter.get('/search/:packageName', async(req:Request,res:Response,next:NextFu
   //get the package name from the route
   const packageName:string = req.params.packageName;
   //get arch query results
-  const archResults:any = await getArchResults(packageName,res);
-  console.log(archResults);
+  const archResults:Package[] = await getArchResults(packageName,res);
   ////REFACTORING UP TO HERE////
 
 

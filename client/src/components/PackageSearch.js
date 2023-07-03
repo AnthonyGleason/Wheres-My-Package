@@ -70,7 +70,7 @@ const handleLuckySearch = function(setAllResults,setLastSearchTerm,setLoadingDis
 }
 const getServerUrl = function(searchInput){
   if (USE_LOCALHOST){
-    return `https://localhost:5000/api/search/${searchInput}`
+    return `http://localhost:5000/api/search/${searchInput}`
   }else{
     return `https://wheresmypackage.herokuapp.com/api/search/${searchInput}`
   }

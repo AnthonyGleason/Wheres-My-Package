@@ -1,8 +1,10 @@
-import express from 'express';
-import { findExactMatch,getArchResults,getAurResults,organizeData, formatAurData} from '../lib/dataHandling';
+import express, { Router } from 'express';
+import { findExactMatch,organizeResultData, formatAurData} from '../lib/handleData';
+import { getArchResults } from '../controllers/archResults';
+import { getAurResults } from '../controllers/aurResults';
 import { Request, Response,NextFunction } from 'express';
 import { Package } from '../interfaces/interfaces';
-export const apiRouter = express.Router();
+export const apiRouter:Router = express.Router();
 
 // greeting message
 apiRouter.get('/', (req:Request, res:Response, next:NextFunction) => {
@@ -15,20 +17,14 @@ apiRouter.get('/search/:packageName', async(req:Request,res:Response,next:NextFu
   const packageName:string = req.params.packageName;
   //get arch query results
   const archResults:Package[] = await getArchResults(packageName,res);
-  ////REFACTORING UP TO HERE////
-
-
   //get aur query results
-  let aurResults = await getAurResults(packageName,res);
-  //format aur data into a temp array
-  aurResults= formatAurData(aurResults);
-  //join both arrays
-  let allResults = archResults.concat(aurResults);
-  //organize data
-  allResults=organizeData(allResults);
+  const aurResults:Package[] = await getAurResults(packageName,res);
+  //join the arch results array and formatted AUR data 
+  let allResults:Package[] = archResults.concat(formatAurData(aurResults));
+  //organize data in all results
+  allResults=organizeResultData(allResults);
   //check results for exact match
-  let exactMatch:any = null;
-  exactMatch = findExactMatch(allResults,packageName);
+  const exactMatch:Package | undefined = findExactMatch(allResults,packageName);
   //return package results
   res.status(200).json({
     'allResults': allResults,

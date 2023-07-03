@@ -1,29 +1,29 @@
-import createError from 'http-errors';
+//create a new express app
 import express from 'express';
-const app:any = express();
+const app = express();
+//////////////////////////////
+import createError from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+//import Types
 import { Request, Response, NextFunction } from 'express';
+//import api router
+import { apiRouter } from './routes/api';
 //setup cors
 import cors from 'cors';
 app.use(cors());
-//routers
-import { apiRouter } from './routes/api';
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-//routes
+//use routes
 app.use('/api', apiRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req:Request, res:Response, next:NextFunction) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err:any, req:Request, res:Response, next:NextFunction) {
   // set locals, only providing error in development
@@ -35,7 +35,7 @@ app.use(function(err:any, req:Request, res:Response, next:NextFunction) {
   res.render('error');
 });
 // start the server
-const port = process.env.PORT || 5000;
+const port:string = process.env.PORT || '5000';
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });

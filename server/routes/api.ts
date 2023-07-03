@@ -1,19 +1,20 @@
 import express from 'express';
 import { findExactMatch,getArchResults,getAurResults,organizeData, formatAurData} from '../lib/dataHandling';
+import {Request, Response,NextFunction} from 'express';
 export const apiRouter = express.Router();
 
 // greeting message
-apiRouter.get('/', (req, res, next) => {
-  res.status(200).json({message: 'Connected to the api successfully'});
+apiRouter.get('/', (req:Request, res:Response, next:NextFunction) => {
+  res.status(200).json({'message': `You have successfully connected to the Where's My Package API`});
 });
 
 // search for a package
-apiRouter.get('/search/:packageName', async(req,res,next)=>{
-  let exactMatch:any = null;
+apiRouter.get('/search/:packageName', async(req:Request,res:Response,next:NextFunction)=>{
   //get the package name from the route
-  const packageName = req.params.packageName;
+  const packageName:String = req.params.packageName;
   //get arch query results
-  let archResults = await getArchResults(packageName,res);
+  const archResults = await getArchResults(packageName,res);
+  console.log(archResults);
   //get aur query results
   let aurResults = await getAurResults(packageName,res);
   //format aur data into a temp array
@@ -23,10 +24,11 @@ apiRouter.get('/search/:packageName', async(req,res,next)=>{
   //organize data
   allResults=organizeData(allResults);
   //check results for exact match
+  let exactMatch:any = null;
   exactMatch = findExactMatch(allResults,packageName);
   //return package results
   res.status(200).json({
-    allResults: allResults,
-    exactMatch: exactMatch,
+    'allResults': allResults,
+    'exactMatch': exactMatch,
   });
 })

@@ -1,12 +1,12 @@
+//returns the first match found in allResults
 export const findExactMatch = function(allResults:any,packageName:any){
-  let exactMatch = {
-    pkgname: '',
+  let exactMatch;
+  for (let i=0;i<allResults.length;i++){
+    if (allResults[i].pkgname===packageName.toLowerCase()){
+      exactMatch=allResults[i];
+      break;
+    };
   };
-  allResults.forEach((match:any)=>{
-    if (match.pkgname===packageName.toLowerCase()){
-      exactMatch=match;
-    }
-  })
   return exactMatch;
 };
 export const formatAurData = function(aurData:any){

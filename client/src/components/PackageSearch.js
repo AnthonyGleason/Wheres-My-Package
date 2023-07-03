@@ -1,7 +1,12 @@
+
 import React, {useState} from 'react';
 import '../styles/PackageSearch.css';
 import loadingImg from '../assets/loading.svg';
 import getLuckyTerm from '../scripts/lucky';
+
+//TOGGLE BETWEEN LOCAL HOST AND SERVER
+const USE_LOCALHOST = true;
+
 export default function PackageSearch({setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay,setCurrentPage}){
   //search input states
   const [archInput,setArchInput] = useState('any');
@@ -57,7 +62,13 @@ const getButtonColor = function(loadingDisplay){
     return 'black';
   }
 }
-
+const getServerUrl = function(searchInput){
+  if (USE_LOCALHOST){
+    return `https://localhost:5000/api/search/${searchInput}`
+  }else{
+    return `https://wheresmypackage.herokuapp.com/api/search/${searchInput}`
+  }
+}
 const handleLuckySearch = function(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
   let lucky = getLuckyTerm();
   handleSearch('any','Any',lucky,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)
@@ -74,7 +85,7 @@ export const handleSearch = async function(archInput,repoInput,searchInput,setAl
     //form validation
     if (!searchInput || searchInput==='') throw new Error('The package search input cannot be left blank.');
     //get data from sever
-    let response = await fetch(`https://wheresmypackage.herokuapp.com/api/search/${searchInput}`,{
+    let response = await fetch(getServerUrl(searchInput),{
       method : 'GET',
     });
     searchResults = (await response.json()).allResults;

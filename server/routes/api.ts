@@ -1,6 +1,7 @@
 import express from 'express';
 import { findExactMatch,getArchResults,getAurResults,organizeData, formatAurData} from '../lib/dataHandling';
-import {Request, Response,NextFunction} from 'express';
+import { Request, Response,NextFunction } from 'express';
+import { Package } from '../interfaces/interfaces';
 export const apiRouter = express.Router();
 
 // greeting message
@@ -11,10 +12,13 @@ apiRouter.get('/', (req:Request, res:Response, next:NextFunction) => {
 // search for a package
 apiRouter.get('/search/:packageName', async(req:Request,res:Response,next:NextFunction)=>{
   //get the package name from the route
-  const packageName:String = req.params.packageName;
+  const packageName:string = req.params.packageName;
   //get arch query results
-  const archResults = await getArchResults(packageName,res);
+  const archResults:any = await getArchResults(packageName,res);
   console.log(archResults);
+  ////REFACTORING UP TO HERE////
+
+
   //get aur query results
   let aurResults = await getAurResults(packageName,res);
   //format aur data into a temp array

@@ -6,7 +6,9 @@ Tech stack: I am using React.js, HTML, CSS and Javascript on the front-end. For 
 
 Live Demo: <a href='https://antinf.github.io/Wheres-My-Package/'>Press Here</a>
 
-Local Installation Instructions: To run this project locally, first clone this repository. Then 'cd' into the cloned repository 'cd' into the client folder and run the command 'npm install' to install required dependencies. After dependencies install you can then run the command 'npm run start'. The client will run at localhost port 3000 by default and connect to my api hosted on Heroku. You can modify your client so you can run a locally hosted server by changing line 76 in PackageSearch.js in the client's components folder from "let response = await fetch(`https://wheresmypackage.herokuapp.com/api/search/${searchInput}`" to "let response = await fetch(`https://localhost:5000/api/search/${searchInput}`". Then open a second terminal window and 'cd' into the server directory of the cloned repository and type 'npm run install' to install required dependencies for the server. After the depencencies finish installing you can run the command 'npm run start'. Now your client should be running at localhost 3000 and will connect to the locally running server at localhost 5000.
+Local Installation Instructions: To run this project locally, first clone this repository. You must type ```npm install``` in both the server and client folders to install required dependencies. After dependencies install you can then run the command ```npm run start``` in both the client and server to run them locally. The client will run at localhost port 3000 and connect to the server at localhost port 5000 by default.
+
+If you would like to use my server I have hosted on heroku you can modify the PackageSearch.js file in the components folder. Change the line ```const USE_LOCALHOST = true;``` to ```const USE_LOCALHOST = false;```
 
 Screenshots: 
 ![desktop1](https://user-images.githubusercontent.com/87878255/232182016-96128802-063b-4ebf-95de-8b6326f4244b.png)

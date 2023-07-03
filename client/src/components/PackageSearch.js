@@ -4,8 +4,10 @@ import '../styles/PackageSearch.css';
 import loadingImg from '../assets/loading.svg';
 import getLuckyTerm from '../scripts/lucky';
 
+
 //TOGGLE BETWEEN LOCAL HOST AND SERVER
 const USE_LOCALHOST = true;
+
 
 export default function PackageSearch({setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay,setCurrentPage}){
   //search input states
@@ -62,16 +64,16 @@ const getButtonColor = function(loadingDisplay){
     return 'black';
   }
 }
+const handleLuckySearch = function(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
+  let lucky = getLuckyTerm();
+  handleSearch('any','Any',lucky,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)
+}
 const getServerUrl = function(searchInput){
   if (USE_LOCALHOST){
     return `https://localhost:5000/api/search/${searchInput}`
   }else{
     return `https://wheresmypackage.herokuapp.com/api/search/${searchInput}`
   }
-}
-const handleLuckySearch = function(setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
-  let lucky = getLuckyTerm();
-  handleSearch('any','Any',lucky,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage)
 }
 export const handleSearch = async function(archInput,repoInput,searchInput,setAllResults,setLastSearchTerm,setLoadingDisplay,setCurrentPage){
   let searchResults = [];

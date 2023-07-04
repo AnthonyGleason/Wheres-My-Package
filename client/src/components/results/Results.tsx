@@ -1,8 +1,8 @@
 import {useState,useEffect} from 'react';
-import '../styles/Results.css';
-import Result from './Result';
+import './Results.css';
+import Result from '../result/Result';
 import { v4 as uuidGen } from 'uuid';
-import ResultsHeading from './ResultsHeading';
+import ResultsHeading from '../resultsHeading/ResultsHeading';
 export default function Results({allResults,lastSearchTerm,currentPage,setCurrentPage}){
   //Results snip refers to the current selection of results. for example page 5 will have a resultsSnip of the data for results #125-#150.
   const [resultsSnip,setResultsSnip] = useState([]);

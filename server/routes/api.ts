@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { findExactMatch,organizeResultData, formatAurData} from '../lib/handleData';
+import { findExactMatch,prettifyResults, formatAurData} from '../lib/handleData';
 import { getArchResults } from '../controllers/archResults';
 import { getAurResults } from '../controllers/aurResults';
 import { Request, Response,NextFunction } from 'express';
@@ -22,7 +22,7 @@ apiRouter.get('/search/:packageName', async(req:Request,res:Response,next:NextFu
   //join the arch results array and formatted AUR data 
   let allResults:Package[] = archResults.concat(formatAurData(aurResults));
   //organize data in all results
-  allResults=organizeResultData(allResults);
+  allResults=prettifyResults(allResults);
   //check results for exact match
   const exactMatch:Package | undefined = findExactMatch(allResults,packageName);
   //return package results

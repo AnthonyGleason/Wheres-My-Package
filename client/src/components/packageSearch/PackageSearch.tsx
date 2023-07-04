@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import '../styles/PackageSearch.css';
-import getLuckyTerm from '../lib/lucky';
-import loadingImg from '../assets/loading.svg';
+import './PackageSearch.css';
+import getLuckyTerm from '../../lib/lucky';
+import loadingImg from '../../assets/loading.svg';
 
 //TOGGLE BETWEEN LOCAL HOST AND SERVER
 const USE_LOCALHOST = true;

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import PackageSearch from './PackageSearch';
-import Results from './Results';
-import '../styles/Home.css';
+import PackageSearch from '../packageSearch/PackageSearch';
+import Results from '../results/Results';
+import './Home.css';
 export default function Home(){
   const [allResults,setAllResults]:any = useState([]);
   const [lastSearchTerm,setLastSearchTerm] = useState('');

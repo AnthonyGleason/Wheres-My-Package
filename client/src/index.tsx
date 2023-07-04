@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Home from './components/Home';
-import Nav from './components/Nav';
-import Footer from './components/Footer';
+import Home from './components/home/Home';
+import Nav from './components/nav/Nav';
+import Footer from './components/footer/Footer';
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
-import Package from './components/Package';
+import Package from './components/package/Package';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(

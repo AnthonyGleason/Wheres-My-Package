@@ -70,7 +70,8 @@ export const formatPackageSize = function(sizeBytes:string | number) {
   };
 };
 
-export const organizeResultData = function(results:Package[]):Package[]{
+//
+export const prettifyResults = function(results:Package[]):Package[]{
   let updatedResults:Package[] = results;
   //iterate through the results array
   results.forEach((result:Package,resultIndex:number)=>{

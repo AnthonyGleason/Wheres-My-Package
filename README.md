@@ -2,7 +2,7 @@
 
 Where's My Package is a web application designed to help Arch Linux users search for software packages on both regular and AUR repositories. With its user-friendly interface, Where's My Package makes it easy for users to find the software they're looking for. The application seamlessly aggregates package data from both the Arch Linux package search API and the AUR package search API, providing comprehensive search results.
 
-Tech stack: I am using React.js, HTML, CSS and Javascript on the front-end. For the back-end I am using Node.js, Express and Typescript. The server is hosted on Heroku.
+Tech stack: I am using React.js and Typescript on the front-end. For the back-end I am using Node.js, Express and Typescript. The server is hosted on Heroku.
 
 Live Demo: <a href='https://antinf.github.io/Wheres-My-Package/'>Press Here</a>
 

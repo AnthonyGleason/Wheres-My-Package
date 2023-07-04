@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import '../styles/PackageSearch.css';
 import getLuckyTerm from '../lib/lucky';
-const loadingImg = require('../assets/loading.svg') as string;
+import loadingImg from '../assets/loading.svg';
 
 //TOGGLE BETWEEN LOCAL HOST AND SERVER
-const USE_LOCALHOST = false;
+const USE_LOCALHOST = true;
 
 export default function PackageSearch({setAllResults,setLastSearchTerm,loadingDisplay,setLoadingDisplay,setCurrentPage}){
   //search input states
@@ -87,7 +87,8 @@ export const handleSearch = async function(archInput,repoInput,searchInput,setAl
     let response = await fetch(getServerUrl(searchInput),{
       method : 'GET',
     });
-    searchResults = (await response.json()).allResults;
+    const responseData = (await response.json())
+    searchResults = responseData.allResults;
     setLastSearchTerm(searchInput);
     if (searchResults.length===0){
       throw new Error('No results found.');
@@ -96,14 +97,22 @@ export const handleSearch = async function(archInput,repoInput,searchInput,setAl
     searchResults = searchResults.filter((result)=>{
       //if the any field is selected then return every item
       if (archInput.toLowerCase()==='any') return true;
-      return (result.arch===archInput);
-    })
+      return result.arch===archInput;
+    });
     //filter array by repository
     searchResults = searchResults.filter((result)=>{
       //if the any field is selected then return every item
       if (repoInput.toLowerCase()==='any') return true;
-      return (result.repo===repoInput.toLowerCase());
-    })
+      return result.repo===repoInput.toLowerCase();
+    });
+    if (responseData.exactMatch){
+      //remove the exact match from the searchResults arr
+      searchResults = searchResults.filter((result)=>{
+        return result.pkgname!==responseData.exactMatch.pkgname;
+      })
+      //set the exact match as the first result
+      searchResults.unshift(responseData.exactMatch);
+    }
     setCurrentPage(1)
   }catch(e){
     console.log(`${e} when getting package data`);

@@ -1,7 +1,6 @@
 //create a new express app
 import express from 'express';
 const app = express();
-//////////////////////////////
 import createError from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';

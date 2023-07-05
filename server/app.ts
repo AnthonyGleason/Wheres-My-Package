@@ -33,7 +33,7 @@ app.use(function(err:any, req:Request, res:Response, next:NextFunction) {
   res.status(err.status || 500);
   res.render('error');
 });
-// start the server
+// start the server, looks for a port declared in enviornment variables (heroku deployment) or uses port 5000 if running locally
 const port:string = process.env.PORT || '5000';
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

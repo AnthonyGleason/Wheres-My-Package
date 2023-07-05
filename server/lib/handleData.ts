@@ -3,10 +3,6 @@ import { Package } from "../interfaces/interfaces";
 //formats aur data into a arch main repository style package
 export const formatAurData = function(aurData:any):Package[]{
   let tempAurData:any = [];
-  /*
-  TODO:
-  the any type can be avoided here by creating an interface for the aur data as it is returned from the aur api
-  */
   aurData.forEach((result:any)=>{
     let tempItem:any = {
       arch: 'any',
@@ -35,9 +31,11 @@ export const formatAurData = function(aurData:any):Package[]{
 }
 
 //formats the provided date into a human readable date for the client
-export const formatDate = function(date:Date):Date{
+export const formatDate = function(date:string):string{
+  //if a date does not exist return an empty string, prevents Invalid Date UTC errors
+  if (!date) return '';
   //create a date with the date input
-  const formattedDateString:string = new Date(date).toLocaleDateString('en-US',{
+  return new Date(date).toLocaleDateString('en-US',{
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -46,13 +44,10 @@ export const formatDate = function(date:Date):Date{
     timeZone: 'UTC',
     hour12: false
   })+' UTC';
-  //convert the string to a Date type
-  const formattedDate:Date = new Date(formattedDateString);
-  return formattedDate;
 };
 
 //formats package size into a string which can be displayed on the client
-export const formatPackageSize = function(sizeBytes:string | number) {
+export const formatPackageSize = function(sizeBytes:string | number):string {
   //if the sizeBytes was provided as a string convert it to a number
   if (typeof(sizeBytes)==='string')sizeBytes=parseInt(sizeBytes);
   const sizeKB:number = sizeBytes / 1024; // Convert bytes to KB
@@ -70,8 +65,9 @@ export const formatPackageSize = function(sizeBytes:string | number) {
   };
 };
 
-//
+//prettifies the results organizing data for the client ensuring it is user friendly and human readable
 export const prettifyResults = function(results:Package[]):Package[]{
+  //make a copy of the results array
   let updatedResults:Package[] = results;
   //iterate through the results array
   results.forEach((result:Package,resultIndex:number)=>{
@@ -81,32 +77,40 @@ export const prettifyResults = function(results:Package[]):Package[]{
     updatedResult.last_update=formatDate(result.last_update);
     updatedResult.build_date=formatDate(result.build_date);
     updatedResult.flag_date=formatDate(result.flag_date);
+    //join the array of maintainers if applicable
     if (Array.isArray(result.maintainers)){
       updatedResult.maintainers = result.maintainers.join(', ');
     }
+    //join the array of licenses if applicable
     if (Array.isArray(result.licenses)){
       updatedResult.licenses = result.licenses.join(', ');
     }
+    //get url for the package
     if (result.repo==='aur'){
       updatedResult.archUrl = `https://aur.archlinux.org/packages/${result.pkgname}`;
     }else{
       updatedResult.archUrl = `https://archlinux.org/packages/${result.repo}/${result.arch}/${result.pkgname}`;
     }
+    //format compressed and install sizes
     updatedResult.compressed_size = formatPackageSize(result.compressed_size);
     updatedResult.installed_size = formatPackageSize(result.installed_size);
     //update the result in the updated results array
     updatedResults[resultIndex] = updatedResult;
   })
+  //return the prettified results
   return updatedResults;
 }
 
 //returns the first match found in the provided resultsArr recursively
-export const findExactMatch = function(resultsArr:Package[],packageName:string):Package | undefined{
+export const findExactMatch = function(resultsArr:Package[],pkgname:string):Package | undefined{
+  //result is equal to the last element of the array. I am not using pop() here because i do not want to modify the original array
   const result:Package | undefined = resultsArr[resultsArr.length-1];
+  // base case, if the result is undefined return that result. we can assume an exact match does not exist
   if (typeof(result)==='undefined') return result;
-  if (result.pkgname===packageName.toLowerCase()){
+  // base case, an exact match is found. return the result
+  if (result.pkgname.toLowerCase()===pkgname.toLowerCase()){
     return result;
   }else{
-    return findExactMatch(resultsArr.slice(0,resultsArr.length-1),packageName);
+    return findExactMatch(resultsArr.slice(0,resultsArr.length-1),pkgname);
   }
 };

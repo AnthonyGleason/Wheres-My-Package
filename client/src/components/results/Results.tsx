@@ -5,14 +5,24 @@ import { v4 as uuidGen } from 'uuid';
 import ResultsHeading from '../resultsNav/ResultsNav';
 import { Package } from '../../interfaces/interfaces';
 import { resultsPerPage } from '../../clientSettings';
-export default function Results({allResults,lastSearchTerm,currentPage,setCurrentPage}:any){
+export default function Results({
+    allResults,
+    lastSearchTerm,
+    currentPage,
+    setCurrentPage
+  }:{
+    allResults: Package[],
+    lastSearchTerm: string,
+    currentPage:number,
+    setCurrentPage: Function,
+  }){
   //Results snip refers to the current selection of results. for example page 5 will have a resultsSnip of the data for results #125-#150.
   const [resultsSnip,setResultsSnip] = useState<Package[]>([]);
   //the total number of pages of search results for the search
   const [totalPages,setTotalPages] = useState<number>(0);
   //returns a selection of the allResults array depending on the total pages and results per page
   const getResultsSnip = function():Package[]{
-    //set the total number of pages rounding the page
+    //set the total number of pages rounding the page up so the last page of search results is not cut off
     const totalPages:number = Math.ceil(allResults.length/resultsPerPage);
     setTotalPages(totalPages);
     if (totalPages>0){
@@ -22,10 +32,11 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
     };
   };
   useEffect(()=>{
+    //if results have been found get the current selection of results for the current page and assign them to the resultsSnip state
     if (allResults){
       setResultsSnip(getResultsSnip());
     };
-  },[allResults,currentPage])
+  },[allResults,currentPage]);
   return(
     <section className='results'>
       <ResultsHeading
@@ -53,19 +64,20 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
             }else{
               return 'result';
             }
-          }
-          const resultClass=getResultClass();
+          };
+          //resultClass is a string which contains the full class for the result
+          const resultClass:string=getResultClass();
           return(
             <ResultItem 
-            resultClass={resultClass} 
             key={uuidGen()} 
+            resultClass={resultClass} 
             arch={result.arch} 
             repo={result.repo} 
-            name={result.pkgname} 
-            version={result.pkgver} 
-            description={result.pkgdesc} 
-            lastUpdated={result.last_update} 
-            flagDate={result.flag_date} 
+            pkgname={result.pkgname} 
+            pkgver={result.pkgver} 
+            pkgdesc={result.pkgdesc} 
+            last_update={result.last_update} 
+            flag_date={result.flag_date} 
             allResults={allResults}
             />
           )

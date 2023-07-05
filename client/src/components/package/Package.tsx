@@ -13,13 +13,12 @@ export default function Package(){
       if (allResults[i].pkgname===pkgname) return allResults[i];
     };
   };
-
   useEffect(()=>{
     setCurrentPackage(getCurrentPackage());
   },[]);
-  if (!currentPackage){
+  if (!currentPackage){ //the package the user is viewing does not exist
     return(<></>);
-  }else if (currentPackage.repo.toLowerCase()==='aur'){
+  }else if (currentPackage.repo.toLowerCase()==='aur'){ //the package the user is viewing is an aur package
     return(
       <section className='package'>
         <h2 className='package-title'>{currentPackage.pkgname}</h2>
@@ -62,7 +61,7 @@ export default function Package(){
         </ul>
       </section>
     )
-  }else{
+  }else{ //if the package exists and is not an aur package we can assume it is apart of the arch official repositories
     return(
       <div className='package'>
         <div className='package-title'>{currentPackage.pkgname}</div>

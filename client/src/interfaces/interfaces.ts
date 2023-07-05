@@ -9,9 +9,9 @@ export interface Package{
   maintainers: string,
   compressed_size: string,
   installed_size: string,
-  last_update: Date,
-  flag_date: Date,
-  build_date: Date,
+  last_update: string,
+  flag_date: string,
+  build_date: string,
   packager: string[],
   votes: number,
   pkgver: string

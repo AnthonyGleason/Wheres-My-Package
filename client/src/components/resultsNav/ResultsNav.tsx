@@ -14,7 +14,8 @@ export default function ResultsNav({
     lastSearchTerm:string
   }){
   const handlePageChange = function(modifier:number):void{
-    const getNextPage = function(){
+    //returns the next page based on the modifier provided
+    const getNextPage = function():number{
       if (modifier===-1){
         return currentPage-1;
       }else if (modifier===1){
@@ -22,14 +23,14 @@ export default function ResultsNav({
       }else{
         return 1;
       }
-    }
+    };
     const nextPage:number = getNextPage();
     //only update next page if the page is within valid range and a valid number
     if (nextPage && nextPage<=totalPages){
       setCurrentPage(nextPage);
     };
   };
-  const getResultsLength = function(){
+  const getResultsLength = function():number{
     if (allResults){
       return allResults.length;
     }else{

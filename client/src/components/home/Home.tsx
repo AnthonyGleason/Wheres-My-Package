@@ -7,7 +7,7 @@ import './Home.css';
 import { Package } from '../../interfaces/interfaces';
 export default function Home(){
   //holds all of the results returned the server on the last search performed
-  const [allResults,setAllResults] = useState<Package>();
+  const [allResults,setAllResults] = useState<Package[]>([]);
   const [lastSearchTerm,setLastSearchTerm] = useState<string>('');
   const [isLoading,setIsLoading] = useState<boolean>(false);
   const [currentPage,setCurrentPage] = useState<number>(0);

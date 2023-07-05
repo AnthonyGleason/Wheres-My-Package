@@ -1,5 +1,7 @@
-export default function ResultsHeading({currentPage,setCurrentPage,totalPages,allResults,lastSearchTerm}){
-  const handlePageChange = function(modifier){
+import { Package } from "../../interfaces/interfaces";
+
+export default function ResultsNav({currentPage,setCurrentPage,totalPages,allResults,lastSearchTerm}:any){
+  const handlePageChange = function(modifier:any){
     let nextPage;
     if (modifier===-1){
       nextPage = currentPage-1;
@@ -12,11 +14,10 @@ export default function ResultsHeading({currentPage,setCurrentPage,totalPages,al
     if (nextPage && nextPage<=totalPages){
       setCurrentPage(nextPage);
     }
-  }
-
+  };
   return(
     <nav className='results-nav'>
-      <h5 className='results-nav-title'>{allResults.length} matching packages found for "{lastSearchTerm}". Page {currentPage} of {totalPages}</h5>
+      <h5 className='results-nav-title'>{getResultsLength(allResults)} matching packages found for "{lastSearchTerm}". Page {currentPage} of {totalPages}</h5>
       <ul className='results-nav-buttons'>
         <li><button onClick={()=>{handlePageChange(-1)}}>{'Prev'}</button></li>
         <li><button onClick={()=>{handlePageChange(1)}}>{'Next'}</button></li>
@@ -25,3 +26,10 @@ export default function ResultsHeading({currentPage,setCurrentPage,totalPages,al
   )
 };
 
+export const getResultsLength = function(results:Package[]):number{
+  if (results){
+    return results.length;
+  }else{
+    return 0;
+  }
+}

@@ -120,7 +120,7 @@ export default function Package(){
           <ul className='depends'>
             <li>Dependencies:</li>
             {
-              currentPackage.depends.map((item)=>{
+              currentPackage.depends.map((item:any)=>{
                 return(<li key={uuidGen()}>{item}</li>)
               })
             }
@@ -128,7 +128,7 @@ export default function Package(){
           <ul className='opt-depends'>
             <li>Optional Dependencies:</li>
             {
-              currentPackage.optdepends.map((item)=>{
+              currentPackage.optdepends.map((item:any)=>{
                 return(<li key={uuidGen()}>{item}</li>)
               })
             }

@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+//import components
 import Home from './components/home/Home';
 import Nav from './components/nav/Nav';
 import Footer from './components/footer/Footer';
-import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import Package from './components/package/Package';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
+//import css
+import './index.css';
+//using hash router instead of BrowserRouter because we are deploying on gh-pages which only supports HashRouter
+import {HashRouter as Router, Routes, Route} from 'react-router-dom';
+const rootElement:any = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <Nav />

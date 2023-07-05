@@ -1,19 +1,23 @@
-import React, {useState} from 'react';
-import PackageSearch from '../packageSearch/PackageSearch';
+import {useState} from 'react';
+//import components
+import PackageSearchBar from '../packageSearchBar/PackageSearchBar';
 import Results from '../results/Results';
+//import styling
 import './Home.css';
+import { Package } from '../../interfaces/interfaces';
 export default function Home(){
-  const [allResults,setAllResults]:any = useState([]);
-  const [lastSearchTerm,setLastSearchTerm] = useState('');
-  const [loadingDisplay,setLoadingDisplay] = useState('none');
+  //holds all of the results returned the server on the last search performed
+  const [allResults,setAllResults] = useState<Package>();
+  const [lastSearchTerm,setLastSearchTerm] = useState<string>('');
+  const [isLoading,setIsLoading] = useState(false);
   const [currentPage,setCurrentPage] = useState(0);
   return(
     <main className='home'>
-      <PackageSearch
+      <PackageSearchBar
       setAllResults={setAllResults} 
       setLastSearchTerm={setLastSearchTerm} 
-      loadingDisplay={loadingDisplay} 
-      setLoadingDisplay={setLoadingDisplay} 
+      isLoading={isLoading} 
+      setIsLoading={setIsLoading} 
       setCurrentPage={setCurrentPage}
       />
       <Results 

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function Result({tempClass,arch,repo,name,version,description,lastUpdated,flagDate,allResults}){
+export default function ResultItem({tempClass,arch,repo,name,version,description,lastUpdated,flagDate,allResults}:any){
   const navigate = useNavigate();
   return(
     <section onClick={()=>{navigate(`/package/${name}`,{state: {allResults}});}} className={tempClass}>

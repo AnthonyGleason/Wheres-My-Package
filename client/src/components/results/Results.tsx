@@ -1,16 +1,21 @@
 import {useState,useEffect} from 'react';
 import './Results.css';
-import Result from '../result/Result';
+import ResultItem from '../resultItem/ResultItem';
 import { v4 as uuidGen } from 'uuid';
-import ResultsHeading from '../resultsHeading/ResultsHeading';
-export default function Results({allResults,lastSearchTerm,currentPage,setCurrentPage}){
+import ResultsHeading, { getResultsLength } from '../resultsNav/ResultsNav';
+export default function Results({allResults,lastSearchTerm,currentPage,setCurrentPage}:any){
   //Results snip refers to the current selection of results. for example page 5 will have a resultsSnip of the data for results #125-#150.
-  const [resultsSnip,setResultsSnip] = useState([]);
+  const [resultsSnip,setResultsSnip] = useState<any>([]);
   const [totalPages,setTotalPages] = useState(1);
   const resultsPerPage = 25;
   useEffect(()=>{
-    setTotalPages(Math.ceil(allResults.length/resultsPerPage));
-    setResultsSnip(allResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage));
+    const totalPages:number = Math.ceil(getResultsLength(allResults)/resultsPerPage);
+    setTotalPages(totalPages);
+    if (totalPages>0){
+      setResultsSnip(allResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage));
+    }else{
+      setResultsSnip([]);
+    }
   },[allResults,currentPage,resultsPerPage])
   return(
     <section className='results'>
@@ -31,7 +36,7 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
           <h5 className='pkg-last-updated'>Last Updated Date</h5>
           <h5 className='pkg-flag-date'>Flag Date</h5>
         </div>
-        {resultsSnip.map((result)=>{
+        {resultsSnip.map((result:any)=>{
           let tempClass='';
           //alternate background colors by adding results-alt-item class to every other item
           if (resultsSnip.indexOf(result)%2===1){
@@ -40,7 +45,7 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
             tempClass='result'
           }
           return(
-            <Result 
+            <ResultItem 
             tempClass={tempClass} 
             key={uuidGen()} 
             arch={result.arch} 

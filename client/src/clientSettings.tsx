@@ -3,3 +3,5 @@
   set this to false to connect to my server hosted on Heroku.
 */
 export const USE_LOCALHOST = false;
+///set resultsPerPage to the number of results to appear on each page once a search is performed
+export const resultsPerPage:number = 25;

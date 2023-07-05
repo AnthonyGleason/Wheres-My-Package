@@ -2,21 +2,30 @@ import {useState,useEffect} from 'react';
 import './Results.css';
 import ResultItem from '../resultItem/ResultItem';
 import { v4 as uuidGen } from 'uuid';
-import ResultsHeading, { getResultsLength } from '../resultsNav/ResultsNav';
+import ResultsHeading from '../resultsNav/ResultsNav';
+import { Package } from '../../interfaces/interfaces';
+import { resultsPerPage } from '../../clientSettings';
 export default function Results({allResults,lastSearchTerm,currentPage,setCurrentPage}:any){
   //Results snip refers to the current selection of results. for example page 5 will have a resultsSnip of the data for results #125-#150.
-  const [resultsSnip,setResultsSnip] = useState<any>([]);
-  const [totalPages,setTotalPages] = useState(1);
-  const resultsPerPage = 25;
-  useEffect(()=>{
-    const totalPages:number = Math.ceil(getResultsLength(allResults)/resultsPerPage);
+  const [resultsSnip,setResultsSnip] = useState<Package[]>([]);
+  //the total number of pages of search results for the search
+  const [totalPages,setTotalPages] = useState<number>(0);
+  //returns a selection of the allResults array depending on the total pages and results per page
+  const getResultsSnip = function():Package[]{
+    //set the total number of pages rounding the page
+    const totalPages:number = Math.ceil(allResults.length/resultsPerPage);
     setTotalPages(totalPages);
     if (totalPages>0){
-      setResultsSnip(allResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage));
+      return allResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage);
     }else{
-      setResultsSnip([]);
-    }
-  },[allResults,currentPage,resultsPerPage])
+      return [];
+    };
+  };
+  useEffect(()=>{
+    if (allResults){
+      setResultsSnip(getResultsSnip());
+    };
+  },[allResults,currentPage])
   return(
     <section className='results'>
       <ResultsHeading
@@ -36,17 +45,19 @@ export default function Results({allResults,lastSearchTerm,currentPage,setCurren
           <h5 className='pkg-last-updated'>Last Updated Date</h5>
           <h5 className='pkg-flag-date'>Flag Date</h5>
         </div>
-        {resultsSnip.map((result:any)=>{
-          let tempClass='';
-          //alternate background colors by adding results-alt-item class to every other item
-          if (resultsSnip.indexOf(result)%2===1){
-            tempClass='result results-alt-item';
-          }else{
-            tempClass='result'
+        {resultsSnip.map((result:Package)=>{
+          const getResultClass = function():string{
+            //alternate background colors by adding results-alt-item class to every other item
+            if (resultsSnip.indexOf(result)%2===1){
+              return 'result results-alt-item';
+            }else{
+              return 'result';
+            }
           }
+          const resultClass=getResultClass();
           return(
             <ResultItem 
-            tempClass={tempClass} 
+            resultClass={resultClass} 
             key={uuidGen()} 
             arch={result.arch} 
             repo={result.repo} 

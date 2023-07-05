@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function ResultItem({tempClass,arch,repo,name,version,description,lastUpdated,flagDate,allResults}:any){
+export default function ResultItem({resultClass,arch,repo,name,version,description,lastUpdated,flagDate,allResults}:any){
   const navigate = useNavigate();
   return(
-    <section onClick={()=>{navigate(`/package/${name}`,{state: {allResults}});}} className={tempClass}>
+    <section onClick={()=>{navigate(`/package/${name}`,{state: {allResults}});}} className={resultClass}>
       <p className='pkg-arch'>{arch}</p>
       <p className='pkg-repo'>{repo}</p>
       <p className='pkg-name'>{name}</p>

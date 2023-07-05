@@ -9,8 +9,8 @@ export default function Home(){
   //holds all of the results returned the server on the last search performed
   const [allResults,setAllResults] = useState<Package>();
   const [lastSearchTerm,setLastSearchTerm] = useState<string>('');
-  const [isLoading,setIsLoading] = useState(false);
-  const [currentPage,setCurrentPage] = useState(0);
+  const [isLoading,setIsLoading] = useState<boolean>(false);
+  const [currentPage,setCurrentPage] = useState<number>(0);
   return(
     <main className='home'>
       <PackageSearchBar

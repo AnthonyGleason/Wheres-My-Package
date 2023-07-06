@@ -6,9 +6,15 @@ Tech stack: I am using React.js and Typescript on the front-end. For the back-en
 
 Live Demo: <a href='https://antinf.github.io/Wheres-My-Package/'>Press Here</a>
 
-Local Installation Instructions: To run this project locally, first clone this repository. You must type ```npm install``` in both the server and client folders to install required dependencies. After dependencies install you can then run the command ```npm run start``` in both the client and server  to run them locally. The client will run at localhost port 3000 and connect to the server at localhost port 5000 by default.
+Local Installation Instructions:
+1) Clone this repository.
+2) Install required dependencies by running the command ```npm run install``` in both the client and server folders.
+3) After dependencies install you can then run the command ```npm run start``` in both the client and server  to run them locally.
+4) The client will run at ```localhost port 3000``` and connect to the server at ```localhost port 5000``` by default.
 
 If you would like to use my server I have hosted on heroku you can modify your client by changing a variable in the PackageSearch.js file. Navigate to the ```client/src/clientSettings.tsx``` file and change the line ```const USE_LOCALHOST = true;``` to ```const USE_LOCALHOST = false;```
+
+Proudly licensed under the GNU General Public License v3.0.
 
 Screenshots: 
 ![desktop1](https://user-images.githubusercontent.com/87878255/232182016-96128802-063b-4ebf-95de-8b6326f4244b.png)

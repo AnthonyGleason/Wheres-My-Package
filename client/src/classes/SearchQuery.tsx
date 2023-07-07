@@ -12,7 +12,7 @@ export class SearchQuery{
   }
 
   //perform a lucky search, (a random valid term is selected from a curated list of terms and then a search is performed)
-  getLuckyResults = async():Promise<void>=>{
+  getLuckyResults = async():Promise<Package[]>=>{
     const luckyTerms:string[]=['python','rust','linux','pipewire','i3-wm','pulseaudio','xorg-server','node','git',];
     //get random index of luckyTerms arr
     const index:number = Math.floor(Math.random() * luckyTerms.length)
@@ -20,10 +20,11 @@ export class SearchQuery{
     //update the search term
     this.term=lucky;
     //get results for the search
-    this.getResults();
+    return await this.getResults();
+
   };
 
-  getResults = async():Promise<void>=>{
+  getResults = async():Promise<Package[]>=>{
     try{
       //form validation
       if (!this.term || this.term==='') throw new Error('The package search input cannot be left blank.');
@@ -37,8 +38,10 @@ export class SearchQuery{
         throw new Error('No results found.');
       }
       this.results=searchResults;
+      return searchResults;
     }catch(e){
       console.log(`${e} when getting package data`);
+      return [];
     }
   };
   

@@ -42,7 +42,9 @@ export class ResultBrowser{
     };
   };
   
-  getResultsSnip = ():void=>{
+  getResultsSnip = ():Package[]=>{
+    //validate current page, we can assume that if there are results and the page is 0 or lower it was in error
+    if (this.currentPage<=0 && this.searchQuery.results) this.currentPage=1;
     //set the total number of pages rounding the page up so the last page of search results is not cut off
     this.totalPages = Math.ceil(this.searchQuery.results.length/resultsPerPage);
     if (this.totalPages>0){
@@ -50,8 +52,17 @@ export class ResultBrowser{
     }else{
       this.resultsSnip = [];
     };
+    return this.resultsSnip;
   };
-
+  
+  getResultClass = (result:Package):string=>{
+    //alternate background colors by adding results-alt-item class to every other item
+    if (this.resultsSnip.indexOf(result)%2===1){
+      return 'result results-alt-item';
+    }else{
+      return 'result';
+    }
+  };
   getResultsLength = ():number=>{
     if (this.searchQuery.results){
       return this.searchQuery.results.length;
@@ -113,7 +124,7 @@ export class ResultBrowser{
     };
   };
 
-  filterResults = ()=>{
+  filterResults = ():Package[]=>{
     // add the snippet property to this class
     let tempResults:Package[] = [];
     //filter array by architecture
@@ -140,5 +151,6 @@ export class ResultBrowser{
       tempResults.unshift(this.searchQuery.exactMatch);
     };
     this.searchQuery.results=tempResults;
+    return tempResults;
   };
 };

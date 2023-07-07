@@ -11,8 +11,8 @@ export class SearchQuery{
     this.term = '';
   }
 
-  //perform a lucky search, (a random valid term is selected from a curated list of terms and then a search is performed)
-  getLuckyResults = async():Promise<Package[]>=>{
+  //sets the search term to a lucky term, (a random valid term is selected from a curated list of terms and then a search is performed)
+  setLuckyTerm = async():Promise<Package[]>=>{
     const luckyTerms:string[]=['python','rust','linux','pipewire','i3-wm','pulseaudio','xorg-server','node','git',];
     //get random index of luckyTerms arr
     const index:number = Math.floor(Math.random() * luckyTerms.length)

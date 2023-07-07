@@ -12,7 +12,12 @@ export default function PackageSearchBar({resultBrowser,setResults}:{resultBrows
 
   const handleSearchEvent = async function(isLucky:boolean){
     //user is submitting a lucky search
-    if (isLucky) resultBrowser.searchQuery.getLuckyResults();
+    if (isLucky){
+      resultBrowser.searchQuery.setLuckyTerm();
+    }else{
+      //otherwise set the search input as the search term
+      resultBrowser.searchQuery.term = resultBrowser.searchInput;
+    }
     //lock the buttons so users cannot send more than 1 search at a time
     resultBrowser.lockSearch()
     setButtonTextColor(resultBrowser.getButtonTextColor());
@@ -20,8 +25,9 @@ export default function PackageSearchBar({resultBrowser,setResults}:{resultBrows
     await resultBrowser.searchQuery
       .getResults()
       .then((results:Package[])=>{
-        setResults(results);
-        resultBrowser.unlockSearch()
+        resultBrowser.searchQuery.results = results;
+        setResults(resultBrowser.filterResults());
+        resultBrowser.unlockSearch();
         setButtonTextColor(resultBrowser.getButtonTextColor());
     });
   };

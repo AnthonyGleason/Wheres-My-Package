@@ -126,16 +126,16 @@ export class ResultBrowser{
 
   filterResults = ():Package[]=>{
     // add the snippet property to this class
-    let tempResults:Package[] = [];
+    let tempResults:Package[] = this.searchQuery.results;
     //filter array by architecture
-    tempResults = this.searchQuery.results.filter((result:any)=>{
+    tempResults = tempResults.filter((result:any)=>{
       //if the any field is selected then return every item
       if (this.archInput.toLowerCase()==='any') return true;
       //otherwise compare the result's architecture to the user selected architecture filter
       return result.arch===this.archInput;
     });
     //filter array by repository
-    tempResults = this.searchQuery.results.filter((result:any)=>{
+    tempResults = tempResults.filter((result:any)=>{
       //if the any field is selected then return every item
       if (this.repoInput.toLowerCase()==='any') return true;
       //otherwise compare the result's repository to the user selected repository filter
@@ -144,7 +144,7 @@ export class ResultBrowser{
     if (this.searchQuery.exactMatch){
       const pkgname = this.searchQuery.exactMatch.pkgname;
       //remove the exact match from the searchResults arr
-      tempResults = this.searchQuery.results.filter((result:any)=>{
+      tempResults = tempResults.filter((result:any)=>{
         return result.pkgname!==pkgname;
       })
       //set the exact match as the first result

@@ -43,8 +43,6 @@ export class ResultBrowser{
   };
   
   getResultsSnip = ():Package[]=>{
-    //validate current page, we can assume that if there are results and the page is 0 or lower it was in error
-    if (this.currentPage<=0 && this.searchQuery.results) this.currentPage=1;
     //set the total number of pages rounding the page up so the last page of search results is not cut off
     this.totalPages = Math.ceil(this.searchQuery.results.length/resultsPerPage);
     if (this.totalPages>0){

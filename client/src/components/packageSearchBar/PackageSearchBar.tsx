@@ -26,7 +26,10 @@ export default function PackageSearchBar({resultBrowser,setResults}:{resultBrows
       .getResults()
       .then((results:Package[])=>{
         resultBrowser.searchQuery.results = results;
+        //filter the search results to the user provided constraints
         setResults(resultBrowser.filterResults());
+        //if there are results set the current page to 1 (this is needed to the results snip for the page can be generated)
+        if (resultBrowser.searchQuery.results) resultBrowser.currentPage=1;
         resultBrowser.unlockSearch();
         setButtonTextColor(resultBrowser.getButtonTextColor());
     });

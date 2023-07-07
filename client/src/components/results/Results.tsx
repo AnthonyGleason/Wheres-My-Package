@@ -8,15 +8,16 @@ import { ResultBrowser } from '../../classes/ResultBrowser';
 
 export default function Results({resultBrowser,results}:{resultBrowser:ResultBrowser, results:Package[]}){
   const [resultsSnip,setResultsSnip] = useState<Package[]>([]);
+  const [currentPage,setCurrentPage] = useState<number>(resultBrowser.currentPage);
 
   //create a snippet
   useEffect(()=>{
     setResultsSnip(resultBrowser.getResultsSnip());
-  },[results,resultBrowser.currentPage]);
+  },[results,currentPage]);
 
   return(
     <section className='results'>
-      <ResultsNav resultBrowser={resultBrowser} />
+      <ResultsNav resultBrowser={resultBrowser} setCurrentPage={setCurrentPage} />
       <main className='results-content'>
         <div className='result-labels'>
           <h5 className='pkg-arch'>CPU Architecture</h5>
@@ -37,7 +38,7 @@ export default function Results({resultBrowser,results}:{resultBrowser:ResultBro
           ))
         }
       </main>
-      <ResultsNav resultBrowser={resultBrowser} />
+      <ResultsNav resultBrowser={resultBrowser} setCurrentPage={setCurrentPage} />
     </section>
   )
 }

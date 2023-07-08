@@ -61,6 +61,15 @@ export class ResultBrowser{
       return 'result';
     }
   };
+
+  findResult = (pkgname:string):Package | undefined=>{
+    const results:Package[] = this.searchQuery.results.filter((result:Package)=>{
+      return result.pkgname===pkgname;
+    });
+    if (results){
+      return results[0];
+    };
+  };
   getResultsLength = ():number=>{
     if (this.searchQuery.results){
       return this.searchQuery.results.length;
@@ -139,7 +148,6 @@ export class ResultBrowser{
       //otherwise compare the result's repository to the user selected repository filter
       return result.repo===this.repoInput.toLowerCase();
     });
-    console.log(this.searchQuery.exactMatch);
     if (this.searchQuery.exactMatch){
       const pkgname = this.searchQuery.exactMatch.pkgname;
       //remove the exact match from the searchResults arr

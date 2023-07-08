@@ -8,10 +8,12 @@ import { Package} from '../../interfaces/interfaces';
 export default function PackageViewer({resultBrowser}:{resultBrowser:ResultBrowser}){
   const pkgname = useParams().pkgname;
   const [currentPackage,setCurrentPackage]= useState<Package>();
-  //perform a search with the term from the route name in order to allow users to share links
-  //here we will need to show the exact match and if there is no exact match redirect to a 404 error
+
+  //this will get data from the server if a user is accessing the url without performing a search
   const getPackageData = async function(){
-    if (pkgname) {
+    if (resultBrowser.searchQuery.results.length>0 && pkgname) { //user is accessing the package from a search
+      setCurrentPackage(resultBrowser.findResult(pkgname));
+    }else if (pkgname){ //user is accessing the package from a link
       resultBrowser.searchQuery.term = pkgname;
       await resultBrowser.searchQuery
         .getResults()
@@ -19,13 +21,13 @@ export default function PackageViewer({resultBrowser}:{resultBrowser:ResultBrows
           resultBrowser.searchQuery.results = results;
           //filter the search results to the user provided constraints
           setCurrentPackage(resultBrowser.filterResults()[0]);
-        });
-    }
-  }
+      });
+    };
+  };
+
   useEffect(() => {
     getPackageData();
   },[]);
-  
 
   if (!currentPackage){ //the package the user is viewing does not exist
     return(<></>);

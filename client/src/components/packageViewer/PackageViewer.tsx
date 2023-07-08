@@ -1,21 +1,32 @@
 import {useEffect, useState} from 'react';
-import {useParams,useLocation} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import { v4 as uuidGen } from 'uuid';
-import './Package.css';
+import './PackageViewer.css';
+import { ResultBrowser } from '../../classes/ResultBrowser';
+import { Package} from '../../interfaces/interfaces';
 
-export default function Package(){
+export default function PackageViewer({resultBrowser}:{resultBrowser:ResultBrowser}){
   const pkgname = useParams().pkgname;
-  const [currentPackage,setCurrentPackage]:any = useState();
-  const location = useLocation();
-  const allResults = location.state.allResults;
-  const getCurrentPackage = function(){
-    for (let i=0; i<allResults.length;i++){
-      if (allResults[i].pkgname===pkgname) return allResults[i];
-    };
-  };
-  useEffect(()=>{
-    setCurrentPackage(getCurrentPackage());
+  const [currentPackage,setCurrentPackage]= useState<Package>();
+  //perform a search with the term from the route name in order to allow users to share links
+  //here we will need to show the exact match and if there is no exact match redirect to a 404 error
+  const getPackageData = async function(){
+    if (pkgname) {
+      resultBrowser.searchQuery.term = pkgname;
+      await resultBrowser.searchQuery
+        .getResults()
+        .then((results: Package[]) => {
+          resultBrowser.searchQuery.results = results;
+          //filter the search results to the user provided constraints
+          setCurrentPackage(resultBrowser.filterResults()[0]);
+        });
+    }
+  }
+  useEffect(() => {
+    getPackageData();
   },[]);
+  
+
   if (!currentPackage){ //the package the user is viewing does not exist
     return(<></>);
   }else if (currentPackage.repo.toLowerCase()==='aur'){ //the package the user is viewing is an aur package

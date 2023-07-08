@@ -70,14 +70,15 @@ export default function PackageSearchBar({resultBrowser,setResults}:{resultBrows
           <label>Repository</label>
           <select value={repoInput} onChange={(e)=>{handleInputChange(e.target.value,'repo')}}>
             <option>Any</option>
+            <option>Aur</option>
             <option>Community</option>
             <option>Community-Testing</option>
             <option>Core</option>
             <option>Extra</option>
-            <option>Aur</option>
+            <option>Extra-Testing</option>
             <option>KDE-Unstable</option>
             <option>Multilib</option>
-            <option>Multilib-testing</option>
+            <option>Multilib-Testing</option>
             <option>Testing</option>
           </select>
         </div>

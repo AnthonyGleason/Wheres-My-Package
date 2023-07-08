@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import Home from './components/home/Home';
 import Nav from './components/nav/Nav';
 import Footer from './components/footer/Footer';
-import Package from './components/package/Package';
+import PackageViewer from './components/packageViewer/PackageViewer';
 //using hash router instead of BrowserRouter because we are deploying on gh-pages which only supports HashRouter
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 //import css
@@ -20,7 +20,7 @@ root.render(
     <Router>
       <Routes>
         <Route path='/' element={<Home resultBrowser={resultBrowser} />} />
-        <Route path='/package/:pkgname' element={<Package />} />
+        <Route path='/package/:pkgname' element={<PackageViewer resultBrowser={resultBrowser} />} />
       </Routes>
     </Router>
     <Footer />

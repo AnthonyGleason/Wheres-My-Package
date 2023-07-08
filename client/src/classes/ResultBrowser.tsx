@@ -139,6 +139,7 @@ export class ResultBrowser{
       //otherwise compare the result's repository to the user selected repository filter
       return result.repo===this.repoInput.toLowerCase();
     });
+    console.log(this.searchQuery.exactMatch);
     if (this.searchQuery.exactMatch){
       const pkgname = this.searchQuery.exactMatch.pkgname;
       //remove the exact match from the searchResults arr

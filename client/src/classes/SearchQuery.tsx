@@ -21,7 +21,6 @@ export class SearchQuery{
     this.term=lucky;
     //get results for the search
     return await this.getResults();
-
   };
 
   getResults = async():Promise<Package[]>=>{
@@ -34,6 +33,7 @@ export class SearchQuery{
       });
       const responseData = await response.json();
       const searchResults = responseData.allResults;
+      this.exactMatch = responseData.exactMatch;
       if (searchResults.length===0){
         throw new Error('No results found.');
       }
@@ -51,5 +51,5 @@ export class SearchQuery{
       }else{
         return `https://wheresmypackage.herokuapp.com/api/search/${this.term}`
       }
-    };
+  };
 };

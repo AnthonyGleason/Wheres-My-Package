@@ -14,5 +14,7 @@ export interface Package{
   build_date: string,
   packager: string[],
   votes: number,
-  pkgver: string
+  pkgver: string,
+  optdepends: Package[],
+  depends: Package[],
 };

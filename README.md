@@ -1,20 +1,36 @@
 # Wheres-My-Package
 
-Where's My Package is a web application designed to help Arch Linux users search for software packages on both regular and AUR repositories. With its user-friendly interface, Where's My Package makes it easy for users to find the software they're looking for. The application seamlessly aggregates package data from both the Arch Linux package search API and the AUR package search API, providing comprehensive search results.
+Where's My Package is a package search engine for the Arch Linux distribution. This tool aims to simplify software discovery by enabling users to search for packages across both official and community (AUR) repositories in a unified search interface.
 
-Tech stack: I am using React.js and Typescript on the front-end. For the back-end I am using Node.js, Express and Typescript. The server is hosted on Heroku.
+<h3>Live Demo: <a href='https://antinf.github.io/Wheres-My-Package/'>Press Here</a></h3>
+<h2>Tech Stack:</h2>
+<h3>Front-end</h3>
+  <span>
+    <img alt="React" height=40rem width=40rem src="https://api.iconify.design/logos/react.svg?download=1" />
+    <img alt="TypeScript" height=40rem width=40rem src="https://api.iconify.design/logos/typescript-icon.svg?download=1" />
+  </span>
+  <br/>
+  React.js, Typescript.
+<h3>Back-end</h3>
+  <span>
+    <img alt="nodejs" height=40rem width=40rem src="https://api.iconify.design/vscode-icons/file-type-node.svg?download=1" />
+    <img alt='express' height=40rem width=40rem src="https://api.iconify.design/skill-icons/expressjs-dark.svg?download=1" />
+    <img alt='heroku' height=40rem width=40rem src="https://api.iconify.design/skill-icons/heroku.svg?download=1" />
+  </span>
+  <br/>
+  Node.js, Express and Typescript
+<br/><br/>
 
-Live Demo: <a href='https://antinf.github.io/Wheres-My-Package/'>Press Here</a>
-
-Local Installation Instructions:
-1) Clone this repository.
-2) Install required dependencies by running the command ```npm run install``` in both the client and server folders.
-3) After dependencies install you can then run the command ```npm run start``` in both the client and server  to run them locally.
-4) The client will run at ```localhost port 3000``` and connect to the server at ```localhost port 5000``` by default.
-
+<h2>Local Installation Instructions:</h2>
+1) Clone this repository.<br/>
+2) Install required dependencies by running the command ```npm run install``` in both the client and server folders.<br/>
+3) After dependencies install you can then run the command ```npm run start``` in both the client and server  to run them locally.<br/>
+4) The client will run at ```localhost port 3000``` and connect to the server at ```localhost port 5000``` by default.<br/>
+<br/>
 If you would like to use my server I have hosted on heroku you can modify your client by changing a variable in the PackageSearch.js file. Navigate to the ```client/src/clientSettings.tsx``` file and change the line ```const USE_LOCALHOST = true;``` to ```const USE_LOCALHOST = false;```
-
-Proudly licensed under the GNU General Public License v3.0.
+<br/><br/>
+<h4>Proudly licensed under the GNU General Public License v3.0.</h4>
+<br/><br/>
 
 Screenshots: 
 ![desktop1](https://user-images.githubusercontent.com/87878255/232182016-96128802-063b-4ebf-95de-8b6326f4244b.png)

@@ -1,14 +1,15 @@
-import { ResultBrowser } from "../../classes/ResultBrowser";
+import { PackageBrowser } from "../../classes/PackageBrowser";
 
-export default function ResultsNav({resultBrowser,setCurrentPage}:{resultBrowser:ResultBrowser,setCurrentPage:Function}){
+export default function ResultsNav({packageBrowser,setCurrentPage}:{packageBrowser:PackageBrowser,setCurrentPage:Function}){
+  //handles the user changing the page. Accepts a modifier which modifies the current page by provided modifier argument.
   const handlePageChange = function(modifier:number){
-    resultBrowser.handlePageChange(modifier)
-    setCurrentPage(resultBrowser.currentPage);
+    packageBrowser.handlePageChange(modifier); //handles the package change locally in the packageBrowser
+    setCurrentPage(packageBrowser.currentPage); //sets the package change in state with the updated package browser page
   };
 
   return(
     <nav className='results-nav'>
-      <h5 className='results-nav-title'>{resultBrowser.getResultsLength()} matching packages found for "{resultBrowser.searchQuery.term}". Page {resultBrowser.currentPage} of {resultBrowser.totalPages}</h5>
+      <h5 className='results-nav-title'>{packageBrowser.searchQuery.getResultsLength()} matching packages found for "{packageBrowser.searchQuery.term}". Page {packageBrowser.currentPage} of {packageBrowser.totalPages}</h5>
       <ul className='results-nav-buttons'>
         <li><button onClick={()=>{handlePageChange(-1)}}>{'Prev'}</button></li>
         <li><button onClick={()=>{handlePageChange(1)}}>{'Next'}</button></li>

@@ -4,6 +4,7 @@ import linkedinLogo from '../../assets/linkedin.svg';
 import mailLogo from '../../assets/mail.svg';
 import githubLogo from '../../assets/github.svg';
 import heartImg from '../../assets/heart.svg';
+
 export default function Footer(){
   return(
     <footer className='footer'>

@@ -2,27 +2,22 @@ import { SearchQuery } from "./SearchQuery";
 import { Package } from "../interfaces/interfaces";
 import { resultsPerPage } from "../clientSettings";
 
-export class ResultBrowser{
+export class PackageBrowser{
   currentPage:number;
   isLoading:boolean;
   searchQuery:SearchQuery;
-  archInput:string;
-  repoInput:string;
-  searchInput:string;
   totalPages:number;
   resultsSnip: Package[];
 
   constructor(){
     this.currentPage=0;
     this.isLoading=false;
-    this.archInput='any';
-    this.repoInput='Any';
-    this.searchInput='';
     this.totalPages = 0;
     this.resultsSnip = [];
     this.searchQuery = new SearchQuery();
   };
-
+  
+  //handles page changes by looking at a modifier which adds or subtracts from the this.currentPage
   handlePageChange = (modifier:number):void=>{
     const currentPage:number = this.currentPage;
     //returns the next page based on the modifier provided
@@ -35,13 +30,16 @@ export class ResultBrowser{
         return 1;
       }
     };
+    //get the next page
     const nextPage:number = getNextPage();
     //only update next page if the page is within valid range and a valid number
     if (nextPage && nextPage<=this.totalPages){
+      //update the currentPage
       this.currentPage=nextPage;
     };
   };
   
+  //returns and sets a results snip based on the current page the user is browsing and the number of results per page the client is set to
   getResultsSnip = ():Package[]=>{
     //set the total number of pages rounding the page up so the last page of search results is not cut off
     this.totalPages = Math.ceil(this.searchQuery.results.length/resultsPerPage);
@@ -53,28 +51,13 @@ export class ResultBrowser{
     return this.resultsSnip;
   };
   
+  //returns the class for the provided result, the results-alt-item class gives an alternate background color to every other search result to reduce eye strain.
   getResultClass = (result:Package):string=>{
     //alternate background colors by adding results-alt-item class to every other item
     if (this.resultsSnip.indexOf(result)%2===1){
       return 'result results-alt-item';
     }else{
       return 'result';
-    }
-  };
-
-  findResult = (pkgname:string):Package | undefined=>{
-    const results:Package[] = this.searchQuery.results.filter((result:Package)=>{
-      return result.pkgname===pkgname;
-    });
-    if (results){
-      return results[0];
-    };
-  };
-  getResultsLength = ():number=>{
-    if (this.searchQuery.results){
-      return this.searchQuery.results.length;
-    }else{
-      return 0;
     }
   };
 
@@ -118,46 +101,16 @@ export class ResultBrowser{
   setInput = (type:string,input:string):void=>{
     switch (type){
       case 'arch':
-        this.archInput = input;
+        this.searchQuery.archInput = input;
         break;
       case 'repo':
-        this.repoInput = input;
+        this.searchQuery.repoInput = input;
         break;
       case 'search':
-        this.searchInput = input;
+        this.searchQuery.searchInput = input;
         break;
       default:
         break;
     };
-  };
-
-  filterResults = ():Package[]=>{
-    // add the snippet property to this class
-    let tempResults:Package[] = this.searchQuery.results;
-    //filter array by architecture
-    tempResults = tempResults.filter((result:any)=>{
-      //if the any field is selected then return every item
-      if (this.archInput.toLowerCase()==='any') return true;
-      //otherwise compare the result's architecture to the user selected architecture filter
-      return result.arch===this.archInput;
-    });
-    //filter array by repository
-    tempResults = tempResults.filter((result:any)=>{
-      //if the any field is selected then return every item
-      if (this.repoInput.toLowerCase()==='any') return true;
-      //otherwise compare the result's repository to the user selected repository filter
-      return result.repo===this.repoInput.toLowerCase();
-    });
-    if (this.searchQuery.exactMatch){
-      const pkgname = this.searchQuery.exactMatch.pkgname;
-      //remove the exact match from the searchResults arr
-      tempResults = tempResults.filter((result:any)=>{
-        return result.pkgname!==pkgname;
-      })
-      //set the exact match as the first result
-      tempResults.unshift(this.searchQuery.exactMatch);
-    };
-    this.searchQuery.results=tempResults;
-    return tempResults;
   };
 };

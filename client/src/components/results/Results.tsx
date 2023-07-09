@@ -4,20 +4,22 @@ import ResultItem from '../resultItem/ResultItem';
 import ResultsNav from '../resultsNav/ResultsNav';
 import { v4 as uuidGen } from 'uuid';
 import { Package } from '../../interfaces/interfaces';
-import { ResultBrowser } from '../../classes/ResultBrowser';
+import { PackageBrowser } from '../../classes/PackageBrowser';
 
-export default function Results({resultBrowser,results}:{resultBrowser:ResultBrowser, results:Package[]}){
+export default function Results({packageBrowser,}:{packageBrowser:PackageBrowser}){
+  //the results snip is a current selection of packages based on the current page
   const [resultsSnip,setResultsSnip] = useState<Package[]>([]);
-  const [currentPage,setCurrentPage] = useState<number>(resultBrowser.currentPage);
+  //current page is used to generate a results snip,
+  const [currentPage,setCurrentPage] = useState<number>(packageBrowser.currentPage);
 
-  //create a snippet
+  //create a snippet when the currentPage is updated
   useEffect(()=>{
-    setResultsSnip(resultBrowser.getResultsSnip());
-  },[results,currentPage]);
+    setResultsSnip(packageBrowser.getResultsSnip());
+  },[currentPage]);
 
   return(
     <section className='results'>
-      <ResultsNav resultBrowser={resultBrowser} setCurrentPage={setCurrentPage} />
+      <ResultsNav packageBrowser={packageBrowser} setCurrentPage={setCurrentPage} />
       <main className='results-content'>
         <div className='result-labels'>
           <h5 className='pkg-arch'>CPU Architecture</h5>
@@ -33,12 +35,12 @@ export default function Results({resultBrowser,results}:{resultBrowser:ResultBro
             <ResultItem
               key={uuidGen()}
               result={result}
-              resultClass={resultBrowser.getResultClass(result)}
+              resultClass={packageBrowser.getResultClass(result)}
             />
           ))
         }
       </main>
-      <ResultsNav resultBrowser={resultBrowser} setCurrentPage={setCurrentPage} />
+      <ResultsNav packageBrowser={packageBrowser} setCurrentPage={setCurrentPage} />
     </section>
   )
 }

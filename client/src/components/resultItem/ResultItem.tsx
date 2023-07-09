@@ -1,5 +1,6 @@
 import { Package } from '../../interfaces/interfaces';
 import {useNavigate} from 'react-router-dom'
+
 export default function ResultItem({result,resultClass}:{result: Package,resultClass:string}){
   const navigate = useNavigate();
   return(

@@ -2,36 +2,40 @@ import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom'
 import { v4 as uuidGen } from 'uuid';
 import './PackageViewer.css';
-import { ResultBrowser } from '../../classes/ResultBrowser';
+import { PackageBrowser } from '../../classes/PackageBrowser';
 import { Package} from '../../interfaces/interfaces';
 
-export default function PackageViewer({resultBrowser}:{resultBrowser:ResultBrowser}){
+export default function PackageViewer({packageBrowser}:{packageBrowser:PackageBrowser}){
   const pkgname = useParams().pkgname;
   const [currentPackage,setCurrentPackage]= useState<Package>();
 
   //this will get data from the server if a user is accessing the url without performing a search
   const getPackageData = async function(){
-    if (resultBrowser.searchQuery.results.length>0 && pkgname) { //user is accessing the package from a search
-      setCurrentPackage(resultBrowser.findResult(pkgname));
+    if (packageBrowser.searchQuery.results.length>0 && pkgname) { //user is accessing the package from a search
+      setCurrentPackage(packageBrowser.searchQuery.findResult(pkgname)); //set the current result in state finding the result with the pkgname from the route.
     }else if (pkgname){ //user is accessing the package from a link
-      resultBrowser.searchQuery.term = pkgname;
-      await resultBrowser.searchQuery
-        .getResults()
+      packageBrowser.searchQuery.term = pkgname; //set the term so a search can be performed
+      await packageBrowser.searchQuery
+        .getResults() //perform the search
         .then((results: Package[]) => {
-          resultBrowser.searchQuery.results = results;
-          //filter the search results to the user provided constraints
-          setCurrentPackage(resultBrowser.filterResults()[0]);
+          //store the results on the searchQuery
+          packageBrowser.searchQuery.results = results;
+          //filter the search results to the user provided constraints and set the filtered results in state
+          setCurrentPackage(packageBrowser.searchQuery.filterResults()[0]);
       });
     };
   };
 
   useEffect(() => {
+    //gets the package data for the pkgname in the route
     getPackageData();
   },[]);
 
-  if (!currentPackage){ //the package the user is viewing does not exist
+  if (!currentPackage){
+     //the package the user is viewing does not exist
     return(<></>);
-  }else if (currentPackage.repo.toLowerCase()==='aur'){ //the package the user is viewing is an aur package
+  }else if (currentPackage.repo.toLowerCase()==='aur'){ 
+    //the package the user is viewing is an aur package
     return(
       <section className='package'>
         <h2 className='package-title'>{currentPackage.pkgname}</h2>
@@ -74,7 +78,8 @@ export default function PackageViewer({resultBrowser}:{resultBrowser:ResultBrows
         </ul>
       </section>
     )
-  }else{ //if the package exists and is not an aur package we can assume it is apart of the arch official repositories
+  }else if(currentPackage.depends && currentPackage.optdepends){ 
+    //if both depends and optdepends exist this package is an official arch package
     return(
       <div className='package'>
         <div className='package-title'>{currentPackage.pkgname}</div>
@@ -148,5 +153,7 @@ export default function PackageViewer({resultBrowser}:{resultBrowser:ResultBrows
         </section>
       </div>
     )
+  }else{
+    return(<></>);
   }
 };

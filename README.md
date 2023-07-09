@@ -15,10 +15,11 @@ Where's My Package is a package search engine for the Arch Linux distribution. T
   <span>
     <img alt="nodejs" height=40rem width=40rem src="https://api.iconify.design/vscode-icons/file-type-node.svg?download=1" />
     <img alt='express' height=40rem width=40rem src="https://api.iconify.design/skill-icons/expressjs-dark.svg?download=1" />
+    <img alt="TypeScript" height=40rem width=40rem src="https://api.iconify.design/logos/typescript-icon.svg?download=1" />
     <img alt='heroku' height=40rem width=40rem src="https://api.iconify.design/skill-icons/heroku.svg?download=1" />
   </span>
   <br/>
-  Node.js, Express, Typescript
+  Node.js, Express, Typescript, Heroku
 <br/><br/>
 
 <h2>Local Installation Instructions:</h2>

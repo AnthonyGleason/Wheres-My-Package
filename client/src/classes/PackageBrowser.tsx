@@ -115,4 +115,14 @@ export class PackageBrowser{
         break;
     };
   };
+  //gets the options for the page based on the total number of pages
+  getPageSelectOptions =()=>{
+    //if there are no pages do not generate any options
+    if (!this.totalPages || this.totalPages<=0) return (<></>);
+    const options:any[] = [];
+    for (let page:number=1;page<=this.totalPages;page++){
+      options.push(<option value={page} key={page}>{page}</option>)
+    }
+    return options;
+  };
 };

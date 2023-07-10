@@ -7,15 +7,7 @@ export default function ResultsNav({packageBrowser,setCurrentPage}:{packageBrows
     setCurrentPage(packageBrowser.currentPage); //sets the package change in state with the updated package browser page
   };
 
-  const getPageSelectOptions = function(){
-    //if there are no pages do not generate any options
-    if (!packageBrowser.totalPages || packageBrowser.totalPages<=0) return (<></>);
-    const options:any[] = [];
-    for (let page:number=1;page<=packageBrowser.totalPages;page++){
-      options.push(<option value={page} key={page}>{page}</option>)
-    }
-    return options;
-  };
+  
   
   return(
     <nav className='results-nav'>
@@ -24,7 +16,7 @@ export default function ResultsNav({packageBrowser,setCurrentPage}:{packageBrows
         <li>
           <select onChange={(e) => handlePageChange(parseInt(e.target.value) - packageBrowser.currentPage)}>
             {
-              getPageSelectOptions()
+              packageBrowser.getPageSelectOptions()
             }
           </select>
         </li>

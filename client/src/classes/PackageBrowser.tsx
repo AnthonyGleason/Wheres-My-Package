@@ -22,10 +22,8 @@ export class PackageBrowser{
     const currentPage:number = this.currentPage;
     //returns the next page based on the modifier provided
     const getNextPage = function():number{
-      if (modifier===-1){
-        return currentPage-1;
-      }else if (modifier===1){
-        return currentPage+1;
+      if (modifier<=-1 || modifier>=1){
+        return currentPage+modifier;
       }else{
         return 1;
       }
@@ -33,10 +31,14 @@ export class PackageBrowser{
     //get the next page
     const nextPage:number = getNextPage();
     //only update next page if the page is within valid range and a valid number
-    if (nextPage && nextPage<=this.totalPages){
+    if (nextPage >= 1 && nextPage <= this.totalPages){
       //update the currentPage
       this.currentPage=nextPage;
-    };
+    }else if (nextPage>this.totalPages){
+      this.currentPage=1;
+    }else if (nextPage<this.totalPages){
+      this.currentPage=this.totalPages;
+    }
   };
   
   //returns and sets a results snip based on the current page the user is browsing and the number of results per page the client is set to

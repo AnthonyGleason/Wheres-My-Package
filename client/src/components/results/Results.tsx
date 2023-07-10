@@ -15,7 +15,7 @@ export default function Results({packageBrowser,}:{packageBrowser:PackageBrowser
   //create a snippet when the currentPage is updated
   useEffect(()=>{
     setResultsSnip(packageBrowser.getResultsSnip());
-  },[currentPage]);
+  },[currentPage,packageBrowser.searchQuery.results]);
 
   return(
     <section className='results'>

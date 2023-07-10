@@ -4,6 +4,7 @@ import { v4 as uuidGen } from 'uuid';
 import './PackageViewer.css';
 import { PackageBrowser } from '../../classes/PackageBrowser';
 import { Package} from '../../interfaces/interfaces';
+import loadingImg from '../../assets/loading.svg';
 
 export default function PackageViewer({packageBrowser}:{packageBrowser:PackageBrowser}){
   const pkgname = useParams().pkgname;
@@ -18,10 +19,10 @@ export default function PackageViewer({packageBrowser}:{packageBrowser:PackageBr
       await packageBrowser.searchQuery
         .getResults() //perform the search
         .then((results: Package[]) => {
-          //store the results on the searchQuery
-          packageBrowser.searchQuery.results = results;
-          //filter the search results to the user provided constraints and set the filtered results in state
-          setCurrentPackage(packageBrowser.searchQuery.filterResults()[0]);
+        //store the results on the searchQuery
+        packageBrowser.searchQuery.results = results;
+        //filter the search results to the user provided constraints and set the filtered results in state
+        setCurrentPackage(packageBrowser.searchQuery.filterResults()[0]);
       });
     };
   };
@@ -33,7 +34,12 @@ export default function PackageViewer({packageBrowser}:{packageBrowser:PackageBr
 
   if (!currentPackage){
      //the package the user is viewing does not exist
-    return(<></>);
+    return(
+      <section style={{ textAlign: 'center', padding: '5rem'}}>
+        <h2>Loading...</h2>
+        <img className='loading' src={loadingImg} alt='spinning circle indicating loading' />
+      </section>
+    );
   }else if (currentPackage.repo.toLowerCase()==='aur'){ 
     //the package the user is viewing is an aur package
     return(
@@ -41,7 +47,7 @@ export default function PackageViewer({packageBrowser}:{packageBrowser:PackageBr
         <h2 className='package-title'>{currentPackage.pkgname}</h2>
         <ul className='package-content'>
           <li>
-            <p>Attention, this is an Aur package submitted by the arch community. Its contents have not been verified.</p>
+            <h4>Attention, this is an aur package submitted by the arch community. Its contents have not been verified.</h4>
           </li>
           <li>
             <p>Architecture:</p>

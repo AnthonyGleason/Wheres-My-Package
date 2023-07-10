@@ -19,7 +19,7 @@ export default function Results({packageBrowser,}:{packageBrowser:PackageBrowser
 
   return(
     <section className='results'>
-      <ResultsNav packageBrowser={packageBrowser} setCurrentPage={setCurrentPage} />
+      <ResultsNav packageBrowser={packageBrowser} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <main className='results-content'>
         <div className='result-labels'>
           <h5 className='pkg-arch'>CPU Architecture</h5>
@@ -40,7 +40,7 @@ export default function Results({packageBrowser,}:{packageBrowser:PackageBrowser
           ))
         }
       </main>
-      <ResultsNav packageBrowser={packageBrowser} setCurrentPage={setCurrentPage} />
+      <ResultsNav packageBrowser={packageBrowser} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </section>
   )
 }

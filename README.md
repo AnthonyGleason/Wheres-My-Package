@@ -37,8 +37,8 @@ Where's My Package is a package search engine for the Arch Linux distribution. T
 
 <h2>Screenshots:</h2>
 
-![desktop1](https://user-images.githubusercontent.com/87878255/232182016-96128802-063b-4ebf-95de-8b6326f4244b.png)
+![wheresmypackagedesktop](https://github.com/antinf/Wheres-My-Package/assets/87878255/2ae5d877-5f14-4ca8-bf24-24681a83eed9)
 ![desktop2](https://user-images.githubusercontent.com/87878255/232182027-0b684402-fae9-4ab0-9f48-239eb3350781.png)
-![mobile1](https://user-images.githubusercontent.com/87878255/232182029-30d907b6-8254-46f2-8a15-f7cffe6930a1.png)
-![mobile2](https://user-images.githubusercontent.com/87878255/232182034-e8fd59e6-80d2-4c9d-acb4-b1bc94d52284.png)
-![tablet1](https://user-images.githubusercontent.com/87878255/232182035-164fa542-700f-44a5-9831-e6fedd010d32.png)
+![252476938-c3e09b35-6e4c-4882-b1aa-0e3015298796](https://github.com/antinf/Wheres-My-Package/assets/87878255/28221239-89ac-4df2-98d1-15c81ec0d4a0)
+![2023-07-10-162349_4480x1440_scrot](https://github.com/antinf/Wheres-My-Package/assets/87878255/a2ac1d50-e257-4dd8-93b0-d4e678a4675c)
+![2023-07-10-161923_4480x1440_scrot](https://github.com/antinf/Wheres-My-Package/assets/87878255/15e1039c-6a12-4347-830c-c2dab6ede44e)

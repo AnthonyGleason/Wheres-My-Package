@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Wheres-My-Package/static/css/main.45ff6ec4.css",
-    "main.js": "/Wheres-My-Package/static/js/main.e246e47c.js",
+    "main.js": "/Wheres-My-Package/static/js/main.57e7cced.js",
     "index.html": "/Wheres-My-Package/index.html",
     "static/media/github.svg": "/Wheres-My-Package/static/media/github.0fe72871d19a3bf699bc9afe6542d138.svg",
     "static/media/linkedin.svg": "/Wheres-My-Package/static/media/linkedin.a8590b6711cb612ba2453bece6b67cab.svg",
@@ -9,10 +9,10 @@
     "static/media/loading.svg": "/Wheres-My-Package/static/media/loading.742ce6df7897dc52e9aef1bc8fe6910b.svg",
     "static/media/heart.svg": "/Wheres-My-Package/static/media/heart.915122281e7163847c35a3ff3868a034.svg",
     "main.45ff6ec4.css.map": "/Wheres-My-Package/static/css/main.45ff6ec4.css.map",
-    "main.e246e47c.js.map": "/Wheres-My-Package/static/js/main.e246e47c.js.map"
+    "main.57e7cced.js.map": "/Wheres-My-Package/static/js/main.57e7cced.js.map"
   },
   "entrypoints": [
     "static/css/main.45ff6ec4.css",
-    "static/js/main.e246e47c.js"
+    "static/js/main.57e7cced.js"
   ]
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 //import components
-import Home from './components/home/Home';
-import Nav from './components/nav/Nav';
-import Footer from './components/footer/Footer';
-import PackageViewer from './components/packageViewer/PackageViewer';
+import Home from '../src/Components/home/Home';
+import Nav from '../src/Components/nav/Nav';
+import Footer from '../src/Components/footer/Footer';
+import PackageViewer from '../src/Components/packageViewer/PackageViewer';
 //using hash router instead of BrowserRouter because we are deploying on gh-pages which only supports HashRouter
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
-import { PackageBrowser } from './classes/PackageBrowser';
+import { PackageBrowser } from '../src/Classes/PackageBrowser';
 //import css
 import './index.css';
 

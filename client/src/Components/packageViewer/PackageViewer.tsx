@@ -2,9 +2,9 @@ import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom'
 import { v4 as uuidGen } from 'uuid';
 import './PackageViewer.css';
-import { PackageBrowser } from '../../classes/PackageBrowser';
-import { Package} from '../../interfaces/interfaces';
-import loadingImg from '../../assets/loading.svg';
+import { PackageBrowser } from '../../Classes/PackageBrowser';
+import { Package} from '../../Interfaces/interfaces';
+import loadingImg from '../../Assets/loading.svg';
 
 export default function PackageViewer({packageBrowser}:{packageBrowser:PackageBrowser}){
   const pkgname = useParams().pkgname;

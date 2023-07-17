@@ -8,7 +8,7 @@ import logger from 'morgan';
 //import Types
 import { Request, Response, NextFunction } from 'express';
 //import api router
-import { apiRouter } from './routes/api';
+import { apiRouter } from './src/Routes/api';
 //setup cors
 import cors from 'cors';
 app.use(cors());

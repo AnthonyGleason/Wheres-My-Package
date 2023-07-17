@@ -3,8 +3,8 @@ import './Results.css';
 import ResultItem from '../resultItem/ResultItem';
 import ResultsNav from '../resultsNav/ResultsNav';
 import { v4 as uuidGen } from 'uuid';
-import { Package } from '../../interfaces/interfaces';
-import { PackageBrowser } from '../../classes/PackageBrowser';
+import { Package } from '../../Interfaces/interfaces';
+import { PackageBrowser } from '../../Classes/PackageBrowser';
 
 export default function Results({packageBrowser,}:{packageBrowser:PackageBrowser}){
   //the results snip is a current selection of packages based on the current page

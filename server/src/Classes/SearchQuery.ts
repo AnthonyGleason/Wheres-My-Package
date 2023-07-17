@@ -1,4 +1,4 @@
-import { Package } from "../interfaces/interfaces";
+import { Package } from "../Interfaces/interfaces";
 import { ArchQuery } from "./arch/ArchQuery";
 import { AurQuery } from "./arch/AurQuery";
 

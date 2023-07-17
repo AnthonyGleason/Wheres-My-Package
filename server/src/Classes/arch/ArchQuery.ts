@@ -1,4 +1,4 @@
-import { Package } from "../../interfaces/interfaces";
+import { Package } from "../../Interfaces/interfaces";
 
 export class ArchQuery{
   term: string;

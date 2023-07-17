@@ -1,8 +1,8 @@
 import './PackageSearchBar.css';
 import { useState } from 'react';
-import loadingImg from '../../assets/loading.svg';
-import { PackageBrowser } from '../../classes/PackageBrowser';
-import { Package } from '../../interfaces/interfaces';
+import loadingImg from '../../Assets/loading.svg';
+import { PackageBrowser } from '../../Classes/PackageBrowser';
+import { Package } from '../../Interfaces/interfaces';
 
 export default function PackageSearchBar({packageBrowser,setResults}:{packageBrowser:PackageBrowser,setResults:Function}){
   //this state stores the user selected filter for the architecture of the package for example 'any' or 'x86_64'

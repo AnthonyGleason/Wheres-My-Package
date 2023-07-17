@@ -1,4 +1,4 @@
-import { PackageBrowser } from "../../classes/PackageBrowser";
+import { PackageBrowser } from "../../Classes/PackageBrowser";
 
 export default function ResultsNav({
     packageBrowser,

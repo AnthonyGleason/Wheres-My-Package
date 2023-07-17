@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 import { Request, Response,NextFunction } from 'express';
-import { SearchQuery } from '../classes/SearchQuery';
-import { Package } from '../interfaces/interfaces';
+import { SearchQuery } from '../Classes/SearchQuery';
+import { Package } from '../Interfaces/interfaces';
 export const apiRouter:Router = express.Router();
 
 // greeting message

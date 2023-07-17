@@ -1,9 +1,9 @@
 import './Footer.css';
 //import images
-import linkedinLogo from '../../assets/linkedin.svg';
-import mailLogo from '../../assets/mail.svg';
-import githubLogo from '../../assets/github.svg';
-import heartImg from '../../assets/heart.svg';
+import linkedinLogo from '../../Assets/linkedin.svg';
+import mailLogo from '../../Assets/mail.svg';
+import githubLogo from '../../Assets/github.svg';
+import heartImg from '../../Assets/heart.svg';
 
 export default function Footer(){
   return(

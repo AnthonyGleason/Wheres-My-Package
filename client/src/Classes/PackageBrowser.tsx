@@ -1,6 +1,6 @@
 import { SearchQuery } from "./SearchQuery";
-import { Package } from "../interfaces/interfaces";
-import { resultsPerPage } from "../clientSettings";
+import { Package } from "../Interfaces/interfaces";
+import { resultsPerPage } from "../Configs/clientSettings";
 
 export class PackageBrowser{
   currentPage:number;

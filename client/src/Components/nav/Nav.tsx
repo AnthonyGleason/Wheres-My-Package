@@ -1,5 +1,5 @@
 import './Nav.css';
-const archLogo = require('../../assets/arch-logo.png');
+const archLogo = require('../../Assets/arch-logo.png');
 
 export default function Nav(){
   return(

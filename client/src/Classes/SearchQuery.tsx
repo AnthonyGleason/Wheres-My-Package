@@ -1,5 +1,5 @@
-import { USE_LOCALHOST } from "../clientSettings";
-import { Package } from "../interfaces/interfaces";
+import { USE_LOCALHOST } from "../Configs/clientSettings";
+import { Package } from "../Interfaces/interfaces";
 
 export class SearchQuery{
   results:Package[];

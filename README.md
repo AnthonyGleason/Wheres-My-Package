@@ -20,8 +20,7 @@ Where's My Package is a package (software) search engine for the Arch Linux dist
   </span>
   <br/>
   Node.js, Express, Typescript, Heroku
-<br/><br/>
-
+<br/>
 <h2>Local Installation Instructions:</h2>
 <ol>
   <li>Clone this repository.</li>
@@ -30,11 +29,7 @@ Where's My Package is a package (software) search engine for the Arch Linux dist
   <li>The client will run at <code>localhost</code> port 3000 and connect to the server at <code>localhost</code> port 5000 by default. If you would like to use my server hosted on Heroku, you can modify your client by navigating to the file located at <code>client/src/clientSettings.tsx</code> and changing the line <code>const USE_LOCALHOST = true;</code> to <code>const USE_LOCALHOST = false;</code>.
   </li>
 </ol>
-<p></p>
-
 <h4>Proudly licensed under the GNU General Public License v3.0.</h4>
-<br/>
-
 <h2>Screenshots:</h2>
 
 ![wheresmypackagedesktop](https://github.com/antinf/Wheres-My-Package/assets/87878255/2ae5d877-5f14-4ca8-bf24-24681a83eed9)

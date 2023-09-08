@@ -27,7 +27,7 @@ Where's My Package is a package search engine for the Arch Linux distribution. T
   <li>Clone this repository.</li>
   <li>Install required dependencies by running the command <code>npm run install</code> in both the client and server folders.</li>
   <li>After dependencies install, you can then run the command <code>npm run start</code> in both the client and server folders to run the client and server locally.</li>
-  <li>The client will run at <code>localhost</code> port 3000 and connect to the server at <code>localhost</code> port 5000 by default. If you would like to use my server hosted on Heroku, you can   modify your client by navigateing to the <code>client/src/clientSettings.tsx</code> file and changing the line <code>const USE_LOCALHOST = true;</code> to <code>const USE_LOCALHOST = false;</code>.
+  <li>The client will run at <code>localhost</code> port 3000 and connect to the server at <code>localhost</code> port 5000 by default. If you would like to use my server hosted on Heroku, you can modify your client by navigating to the file located at <code>client/src/clientSettings.tsx</code> and changing the line <code>const USE_LOCALHOST = true;</code> to <code>const USE_LOCALHOST = false;</code>.
   </li>
 </ol>
 <p></p>

@@ -1,8 +1,8 @@
 # Wheres-My-Package
 
-Where's My Package is a package search engine for the Arch Linux distribution. This tool aims to simplify software discovery by enabling users to search for packages across both official and community (AUR) repositories in a unified search interface.
+Where's My Package is a package (software) search engine for the Arch Linux distribution. This tool simplifies package discovery by enabling users to search for packages across both official and community (AUR) repositories in a unified search interface. This unified api is utilizes dynamic aggregation and curation of data from both official and AUR apis based on user-inputted search queries.
 
-<h3>Live Demo: <a href='https://antinf.github.io/Wheres-My-Package/'>Press Here</a></h3>
+<h3>Live Demo: <a href='https://anthonygleason.github.io/Wheres-My-Package/'>Press Here</a></h3>
 <h2>Tech Stack:</h2>
 <h3>Front-end:</h3>
   <span>

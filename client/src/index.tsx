@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 //import components
 import Home from '../src/Components/home/Home';
 import Nav from '../src/Components/nav/Nav';
-import Footer from '../src/Components/footer/Footer';
 import PackageViewer from '../src/Components/packageViewer/PackageViewer';
 //using hash router instead of BrowserRouter because we are deploying on gh-pages which only supports HashRouter
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
@@ -26,6 +25,5 @@ root.render(
         <Route path='/package/:pkgname' element={<PackageViewer packageBrowser={packageBrowser} />} />
       </Routes>
     </Router>
-    <Footer />
   </React.StrictMode>
 );

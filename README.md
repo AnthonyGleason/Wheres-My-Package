@@ -33,7 +33,7 @@ Where's My Package is a package (software) search engine for the Arch Linux dist
 <h2>Screenshots:</h2>
 
 ![wheresmypackagedesktop](https://github.com/antinf/Wheres-My-Package/assets/87878255/2ae5d877-5f14-4ca8-bf24-24681a83eed9)
-![desktop2](https://user-images.githubusercontent.com/87878255/232182027-0b684402-fae9-4ab0-9f48-239eb3350781.png)
-![252476938-c3e09b35-6e4c-4882-b1aa-0e3015298796](https://github.com/antinf/Wheres-My-Package/assets/87878255/28221239-89ac-4df2-98d1-15c81ec0d4a0)
+![2024-01-09-171510_2560x3040_scrot](https://github.com/AnthonyGleason/Wheres-My-Package/assets/87878255/7d96ad3d-336a-4f21-8163-080d8785b4ff)
+![2024-01-09-144244_2560x1600_scrot](https://github.com/AnthonyGleason/Wheres-My-Package/assets/87878255/81874a24-910a-4742-badd-7558fd09b1e3)
 ![2023-07-10-162349_4480x1440_scrot](https://github.com/antinf/Wheres-My-Package/assets/87878255/a2ac1d50-e257-4dd8-93b0-d4e678a4675c)
 ![2023-07-10-161923_4480x1440_scrot](https://github.com/antinf/Wheres-My-Package/assets/87878255/15e1039c-6a12-4347-830c-c2dab6ede44e)

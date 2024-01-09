@@ -54,7 +54,7 @@ export class SearchQuery{
       if (USE_LOCALHOST){
         return `http://localhost:5000/api/search/${this.term}`
       }else{
-        return `https://wheresmypackage.herokuapp.com/api/search/${this.term}`
+        return `https://wheres-my-package-964df5bc544f.herokuapp.com/api/search/${this.term}`
       }
   };
 

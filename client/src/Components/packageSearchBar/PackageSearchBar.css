@@ -17,34 +17,17 @@
 select{
   flex-grow: 1;
 }
-@media only screen and (min-width:809px) {
+@media only screen and (min-width:768px) {
   .search-field{
     display: flex;
     justify-content: space-between;
   }
   .search-field button{
-    margin: 15px;
     padding: 15px;
     font-size: 15px;
   }
 }
-@media only screen and (min-width: 536px) and (max-width:808px) {
-  .search-field{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-  .search-field button{
-    margin: 7px;
-    padding: 7px;
-    font-size: 12px;
-  }
-  .loading{
-    align-self: center;
-    justify-self: center;
-  }
-}
-@media only screen and (max-width: 535px){
+@media only screen and (max-width: 767px){
   .search-field{
     display: flex;
     flex-direction: column;
@@ -57,23 +40,36 @@ select{
   .loading{
     align-self: center;
   }
+  .search-field .search-buttons{
+    justify-content: center;
+  }
 }
-.search-field button{
-  align-self: center;
+
+
+.search-repo,
+.search-arch,
+.search-terms{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.search-field .search-buttons button{
   font-weight: 700;
   border-radius: 5px;
   border: 1px solid black;
   min-width: max-content;
+  padding: 10px;
 }
 .search-terms{
   width: 100%;
-  max-width: 500px;
 }
 .search-button{
   min-width: max-content;
 }
 .search-terms input{
   padding: 5px;
+  flex-grow: 1;
+  width: 100%;
 }
 .search-repo select,
 .search-arch select{
@@ -85,7 +81,14 @@ select{
   display: flex;
   flex-direction: column;
   padding: 15px;
+  justify-content: center;
 }
 .loading{
   width: 30px;
+}
+.search-buttons{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px;
 }

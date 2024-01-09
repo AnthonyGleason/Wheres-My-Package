@@ -103,9 +103,11 @@ export default function PackageSearchBar({packageBrowser,setResults}:{packageBro
             }}
           />
         </div>
-        <button type='button' style={{color: buttonTextColor}} className='search-button' onClick={()=>{handleSearchEvent(false)}}>Search</button>
-        <button type='button' style={{color: buttonTextColor}} className='lucky-button' onClick={()=>{handleSearchEvent(true)}}>I'm Feeling Lucky</button>
-        <img className='loading' style={{display: packageBrowser.getLoadingImgStyle()}} src={loadingImg} alt='spinning circle indicating loading' />
+        <div className='search-buttons'>
+          <button type='button' style={{color: buttonTextColor}} className='search-button' onClick={()=>{handleSearchEvent(false)}}>Search</button>
+          <button type='button' style={{color: buttonTextColor}} className='lucky-button' onClick={()=>{handleSearchEvent(true)}}>I'm Feeling Lucky</button>
+          <img className='loading' style={{display: packageBrowser.getLoadingImgStyle()}} src={loadingImg} alt='spinning circle indicating loading' />
+        </div>
       </form>
     </section>
   )

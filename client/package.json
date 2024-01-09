@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "https://antinf.github.io/Wheres-My-Package",
+  "homepage": "https://anthonygleason.github.io/Wheres-My-Package",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,7 @@
     "@types/node": "^16.18.38",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1",

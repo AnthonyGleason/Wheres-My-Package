@@ -10,7 +10,7 @@ Where's My Package is a package (software) search engine for the Arch Linux dist
     <img alt="TypeScript" height=40rem width=40rem src="https://api.iconify.design/logos/typescript-icon.svg?download=1" />
   </span>
   <br/>
-  React, Typescript
+  React, TypeScript
 <h3>Back-end:</h3>
   <span>
     <img alt="nodejs" height=40rem width=40rem src="https://api.iconify.design/vscode-icons/file-type-node.svg?download=1" />
@@ -19,7 +19,7 @@ Where's My Package is a package (software) search engine for the Arch Linux dist
     <img alt='heroku' height=40rem width=40rem src="https://api.iconify.design/skill-icons/heroku.svg?download=1" />
   </span>
   <br/>
-  Node.js, Express, Typescript, Heroku
+  Node.js, Express.js, TypeScript, Heroku
 <br/>
 <h2>Local Installation Instructions:</h2>
 <ol>
